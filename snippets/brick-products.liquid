@@ -1,0 +1,122 @@
+{% comment %}
+    Renders products block for Products with image section
+
+    Accepts:
+    - block: {Object} Block object
+    - animation_anchor: {String} ID of the element that will trigger animations
+
+    Usage:
+    {% render 'brick-products', block: block, animation_anchor: animation_anchor %}
+{% endcomment %}
+
+{%- liquid
+  assign columns_desktop = 2
+  assign columns_medium = 2
+  assign columns_small = 2
+  assign columns_mobile = block.settings.layout_mobile | plus: 0
+
+  capture product_grid_classes
+    echo 'grid'
+
+    if block.settings.layout_mobile == 'slider'
+      echo ' grid--mobile-slider'
+    else
+      echo ' grid--mobile-vertical'
+    endif
+  endcapture
+-%}
+
+{%- capture style -%}
+  --COLUMNS: {{ columns_desktop }};
+  --COLUMNS-MEDIUM: {{ columns_medium }};
+  --COLUMNS-SMALL: {{ columns_small }};
+  --COLUMNS-MOBILE: {{ columns_mobile }};
+{%- endcapture -%}
+
+<div class="brick__block brick__block--products text-center" style="{{ style }}" {{ block.shopify_attributes }}>
+        {% if block.settings.title %}
+            {%- liquid
+              assign animation_order = animation_order | plus: 1
+              assign heading_tag = 'h2'
+
+              unless section.settings.heading_tag == 'automatic' or block.settings.heading_tag == blank
+                assign heading_tag = block.settings.heading_tag
+              endunless
+            -%}
+
+            <{{ heading_tag }} class="hero__title {{ block.settings.heading_font_size }}"
+              data-aos="hero"
+              data-aos-anchor="{{ animation_anchor }}"
+              data-aos-order="{{ animation_order }}"
+              {{ block.shopify_attributes }}>
+            {{ block.settings.title | escape }}</{{ heading_tag }}>
+        {% endif %}
+
+        {%- if block.settings.description != '' -%}
+          {%- liquid
+            assign color = block.settings.color
+            assign block_style = ''
+
+            unless color == 'rgba(0,0,0,0)' or color == blank
+              capture block_style
+                echo '--text:' | append: color | append: ';'
+              endcapture
+            endunless
+          -%}
+
+            {%- assign animation_order = animation_order | plus: 1 -%}
+            <p class="hero__description {{ block.settings.text_font_size }}"
+              data-aos="hero"
+              data-aos-anchor="{{ animation_anchor }}"
+              data-aos-order="{{ animation_order }}"
+              {% if block_style != '' %}
+                style="{{ block_style }}"
+              {% endif %}
+              {{ block.shopify_attributes }}>
+              {{ block.settings.description }}
+            </p>
+        {%- endif -%}       
+
+          {%- liquid
+            assign link_url = block.settings.link
+            assign link_text = block.settings.link_text
+            assign animation_order = animation_order | plus: 1
+
+            assign button_style = block.settings.button_style
+            if button_style == 'btn--text' and block.settings.show_arrow
+              assign button_style = button_style | append: ' btn--text-no-underline'
+            endif
+          -%}
+
+          {%- if link_text != '' -%}
+            <div class="hero__button"
+              data-aos="hero"
+              data-aos-anchor="{{ animation_anchor }}"
+              data-aos-order="{{ animation_order }}"
+              {{ block.shopify_attributes }}>
+              <a class="btn {{ button_style }} {{ block.settings.button_size }} {{ block.settings.button_type }} {{ block.settings.button_font }} {{ block.settings.button_transform }}" href="{{ link_url | default: '#!' }}">
+                <span>{{ link_text | escape }}</span>
+
+                {%- if block.settings.show_arrow -%}
+                  {% render 'icon-arrow-right' %}
+                {%- endif -%}
+              </a>
+            </div>
+          {%- endif -%}         
+
+  <div class="grid-outer">
+    <div class="{{ product_grid_classes }}">
+      {%- liquid
+        if block.settings.product_list.count > 0
+          for product in block.settings.product_list
+            render 'product-grid-item', product: product
+          endfor
+        else
+          for i in (1..4)
+            render 'onboarding-product-grid-item'
+          endfor
+        endif
+      -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "section-404",
+      "disabled": true,
+      "settings": {
+        "color_scheme": ""
+      }
+    },
+    "section_rich_text_KCwjnt": {
+      "type": "section-rich-text",
+      "blocks": {
+        "subheading_Cbzax6": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "ERROR 404",
+            "padding_bottom": 16
+          }
+        },
+        "heading_bmniwX": {
+          "type": "heading",
+          "settings": {
+            "title": "PAGE NOT FOUND",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_jWHCkg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Looks like the page you’re looking for doesn’t exist.</p>",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_jKAfy6": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Go Back Home",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "subheading_Cbzax6",
+        "heading_bmniwX",
+        "text_jWHCkg",
+        "buttons_jKAfy6"
+      ],
+      "settings": {
+        "align_text": "text-center",
+        "width": "wrapper",
+        "color_scheme": "",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "section_recent_products_gpeEJV": {
+      "type": "section-recent-products",
+      "settings": {
+        "product_recently_limit": 6,
+        "product_recently_minimum": 4,
+        "product_recently_heading": "Recently viewed",
+        "heading_font_size": "heading-x-small",
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 30,
+        "padding_bottom": 0,
+        "heading_tag": "automatic"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_rich_text_KCwjnt",
+    "section_recent_products_gpeEJV"
+  ]
+}

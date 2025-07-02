@@ -1,0 +1,293 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "heading_font_size": "heading-large",
+        "show_content": true,
+        "text_font_size": "body-medium",
+        "align_text": "text-center",
+        "overlay_opacity": 0,
+        "height": "screen-height-three-quarters",
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_rich_text_Ectf6j": {
+      "type": "section-rich-text",
+      "blocks": {
+        "heading_GLNWpH": {
+          "type": "heading",
+          "settings": {
+            "title": "FAQs",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_GLNWpH"
+      ],
+      "settings": {
+        "align_text": "text-center",
+        "width": "wrapper",
+        "color_scheme": "",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "section_sidebar_kmQMK8": {
+      "type": "section-sidebar",
+      "blocks": {
+        "header_KXhQEa": {
+          "type": "header",
+          "settings": {
+            "title": "OUR UNIQUE WALL ART"
+          }
+        },
+        "accordion_9dmGYh": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What types of artwork does Designer Boys offer?</b>",
+            "content": "<p>We specialise in a diverse range of wall artworks, including Print Art, Luxe Canvas Prints, Hand-worked oversized Canvases (our Platinum Range), Textural Art, Kids Art and Mirrors. Each category is thoughtfully curated to suit a range of interior design styles.</p>"
+          }
+        },
+        "accordion_9bcLTQ": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>Are the artworks custom-made?</b>",
+            "content": "<p>Yes, all our artworks are handmade in our studio after you place your order. This approach ensures each piece is crafted to your specific preferences, including frame selection and size.</p>"
+          }
+        },
+        "accordion_pVUY93": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What sizes do you offer?</b>",
+            "content": "<p>Our printed artwork is available in various sizes from Small to X-Large (see individual artwork for exact dimensions). </p><p>Our canvases range in size from Medium to 2X-Large (see individual artwork for exact dimensions). </p><p>Our textural artwork is available in various sizes from Small to X-Large (see individual artwork for exact dimensions). </p>"
+          }
+        },
+        "accordion_MrE8CG": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What size is best for my space?</b>",
+            "content": "<p>We recommend reviewing the available sizes for the piece(s) you’re interested in and carefully considering whether these are right for the wall space and spatial proportions of your room and furniture. </p><p>If you need assistance with selecting the right size pieces please give us a call on <a href=\"tel:0754556024\" title=\"tel:0754556024\">(07) 5455 6024</a>…we would be delighted to assist!</p>"
+          }
+        },
+        "accordion_3hdAHU": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What frame options are on offer?</b>",
+            "content": "<p>We offer a variety of high-quality timber frames to suit a range of styles so that you can customise your frame choice to suit your decor and interiors.</p>"
+          }
+        },
+        "accordion_RUV9tE": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What else is customisable?</b>",
+            "content": "<p>We offer a range of glazing options to suit different lighting and usage conditions (e.g. anti-glare glazing). </p><p>You can also specify for your artwork to be strung either lengthways or widthways, to suit your hanging preference. </p>"
+          }
+        },
+        "header_Yqp7tL": {
+          "type": "header",
+          "settings": {
+            "title": "OUR WONDERFUL ARTISTS"
+          }
+        },
+        "accordion_EKytwd": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>Do you collaborate with artists?</b>",
+            "content": "<p>Absolutely. We have long-term relationships with over 60 artists globally, some spanning more than 20 years. We continuously collaborate to refresh our portfolio and introduce new art.To view our artists, click <a href=\"https://designerboysart.myshopify.com/pages/our-artists\" title=\"https://designerboysart.myshopify.com/pages/our-artists\"><strong>HERE</strong></a>.</p>"
+          }
+        },
+        "accordion_w6VEJC": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>How can I become a featured artist with Designer Boys Art?</b>",
+            "content": "<p>We are always seeking new artistic talent. If you're interested in collaborating, please email us at <a href=\"mailto:info@designerboys.com.au\"><span style=\"text-decoration:underline\">info@designerboys.com.au</span></a> with your name, contact details and portfolio (or examples of your art from socials etc), and we will respond as soon as possible. </p>"
+          }
+        },
+        "header_haAaqi": {
+          "type": "header",
+          "settings": {
+            "title": "PRODUCTION TIMEFRAMES"
+          }
+        },
+        "accordion_wPPqFc": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What is the typical production time for an order?</b>",
+            "content": "<p>As all artworks are made to order, production times can vary. The following is a rough guide for our various artwork types:</p><ul><li>Print & Textural Artworks - allow 5-7 business days plus shipping (if all components are in stock).</li><li>Luxe Canvas Artworks - allow 10-14 business days plus shipping</li><li>Custom Mirrors - allow 10-14 business days plus shipping</li><li>Platinum Canvas Artworks  - 5 - 7 weeks</li></ul><p>If your order is urgent, please let us know. We will always do our very best to accommodate your timeline. </p><p>Please note: every artwork is custom made in our Australian studio and is not an imported fully framed stock item. </p>"
+          }
+        },
+        "header_tbnthJ": {
+          "type": "header",
+          "settings": {
+            "title": "SHIPPING"
+          }
+        },
+        "accordion_9GMqtF": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What delivery options do you offer?</b>",
+            "content": "<p>We provide both Standard and Premium Delivery Services. Standard delivery is a 'drop-off' service by our national courier, Aramax. While our Premium Delivery service with TLC couriers, offered in selected areas, includes bespoke premium delivery, unboxing and call on approach add-ons to give you peace of mind.</p>"
+          }
+        },
+        "accordion_maiQze": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>How are shipping costs calculated?</b>",
+            "content": "<p>Shipping costs are additional to the product purchase price and are calculated at checkout based on your location and the size of the artwork(s) in your cart. Designer Boys strives to keep its shipping costs to a minimum. </p>"
+          }
+        },
+        "accordion_ab8fAD": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>Do you offer a collection option?</b>",
+            "content": "<p>At this time our only option is for delivery. We offer standard and premium delivery services. </p>"
+          }
+        },
+        "header_zRcrGw": {
+          "type": "header",
+          "settings": {
+            "title": "PAYMENT & ORDERS"
+          }
+        },
+        "accordion_TMCHCr": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>What payment methods do you accept?</b>",
+            "content": "<p>We currently accept payment via credit card (Visa, MasterCard, and American Express), as well as direct deposit. <br/><br/>For approved trade clients, we also offer payment terms. <br/><br/>All transactions are securely processed, and we do not store credit card details.</p>"
+          }
+        },
+        "accordion_LBRTMh": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>Can I place an order without a trade account?</b>",
+            "content": "<p>Designer Boys Art is a trade-only supplier, meaning our artworks are exclusively available to interior designers, stylists, and industry professionals. </p><p>If you’d like to apply for a trade account, please visit our Trade Application page.</p><p>If you are a member of the public, please contact your Interior Designer to discuss purchasing our art, or take advantage of our free art consultation service with our in-house interior designer. </p>"
+          }
+        },
+        "accordion_ExHwpJ": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>How can I track my order?</b>",
+            "content": "<p>Once your order has been shipped, we’ll send you a confirmation email with tracking details. You can use this information to monitor the delivery status of your artwork.</p>"
+          }
+        },
+        "header_zxLwWp": {
+          "type": "header",
+          "settings": {
+            "title": "CANCELLATIONS & RETURNS"
+          }
+        },
+        "accordion_eFi8dm": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>Can I cancel or amend my order after placing it?</b>",
+            "content": "<p>Cancellations and amendments can only be accepted before full payment is received or before the order has entered production. Once production has started, we cannot accommodate changes.</p>"
+          }
+        },
+        "accordion_mVAVxK": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>Do you offer refunds?</b>",
+            "content": "<p>As all of our art is made to order, unfortunately we do not issue refunds for change of mind or if you make an error with your order. However, if there's an issue with your order, please contact us, and we'll strive to find a suitable solution.</p>"
+          }
+        },
+        "header_Pn38xT": {
+          "type": "header",
+          "settings": {
+            "title": "HANGING & CARING FOR YOUR ART"
+          }
+        },
+        "accordion_mFbEe8": {
+          "type": "accordion",
+          "settings": {
+            "title": "Does Designer Boys hang the artwork?",
+            "content": "<p>Designer Boys Art does not provide an artwork hanging service. However, all our artworks come ready to hang with the appropriate fixtures. </p><p>For professional installation, we recommend engaging a qualified picture hanger or interior installer. Although we take no responsibility for their service, we have recommended picture hangers in each major city and some regional areas - see <a href=\"/pages/recommended-picture-hangers\" title=\"Recommended Picture Hangers\"><strong>HERE</strong></a><strong> </strong>for our recommendations list.</p>"
+          }
+        },
+        "accordion_mz8QmG": {
+          "type": "accordion",
+          "settings": {
+            "title": "<b>How can I care for my Designer Boys artwork?</b>",
+            "content": "<p>To maintain the quality of your artwork, avoid placing it in direct sunlight or areas with high humidity. </p><p>Avoid placing directly under air conditioning units or areas where there is likely to be moisture, excessive dryness or abnormal temperature variations. </p><p>Dust frames and surfaces gently with a soft, dry cloth.</p><p>We strongly recommend using a professional picture hanger. If you’re DIY hanging be aware that some of our pieces are weighty and require specialised wall fixtures. Designer Boys takes no responsibility for damage to your art or property from the hanging process. </p>"
+          }
+        },
+        "header_8nDtWk": {
+          "type": "header",
+          "settings": {
+            "title": "CONTACT"
+          }
+        },
+        "text_nMfbwp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Still have questions? We're happy to help! Please email us at <a href=\"mailto:ADMIN@DESIGNERBOYS.COM.AU\" title=\"mailto:ADMIN@DESIGNERBOYS.COM.AU\">ADMIN@DESIGNERBOYS.COM.AU</a> and we will get back to you within 24 hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "header_KXhQEa",
+        "accordion_9dmGYh",
+        "accordion_9bcLTQ",
+        "accordion_pVUY93",
+        "accordion_MrE8CG",
+        "accordion_3hdAHU",
+        "accordion_RUV9tE",
+        "header_Yqp7tL",
+        "accordion_EKytwd",
+        "accordion_w6VEJC",
+        "header_haAaqi",
+        "accordion_wPPqFc",
+        "header_tbnthJ",
+        "accordion_9GMqtF",
+        "accordion_maiQze",
+        "accordion_ab8fAD",
+        "header_zRcrGw",
+        "accordion_TMCHCr",
+        "accordion_LBRTMh",
+        "accordion_ExHwpJ",
+        "header_zxLwWp",
+        "accordion_eFi8dm",
+        "accordion_mVAVxK",
+        "header_Pn38xT",
+        "accordion_mFbEe8",
+        "accordion_mz8QmG",
+        "header_8nDtWk",
+        "text_nMfbwp"
+      ],
+      "settings": {
+        "heading_font_size": "heading-x-small",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_rich_text_Ectf6j",
+    "section_sidebar_kmQMK8"
+  ]
+}

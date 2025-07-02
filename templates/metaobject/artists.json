@@ -1,0 +1,154 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_double_3zmmWb": {
+      "type": "section-double",
+      "blocks": {
+        "heading_Y8AnVW": {
+          "type": "heading",
+          "settings": {
+            "title": "{{ metaobject.name.value }}",
+            "heading_font_size": "heading-medium",
+            "padding_bottom": 16,
+            "heading_tag": "h1"
+          }
+        },
+        "text_Yacrfa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ metaobject.address.value }}<br/><em><strong>{{ metaobject.style.value }}</strong></em></p>{{ metaobject.bio | metafield_tag }}",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_Y8AnVW",
+        "text_Yacrfa"
+      ],
+      "settings": {
+        "image_1": "{{ metaobject.photo.value }}",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "",
+        "width": "wrapper--full",
+        "height": "four-fifty-height-hero",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "center_text": false,
+        "custom_class": "",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
+    "section_collection_LnRJXA": {
+      "type": "section-collection",
+      "disabled": true,
+      "settings": {
+        "featured_collection": "",
+        "heading": "",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "layout": "inline",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper--full-padded",
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "products_by_tag_ff4jUz": {
+      "type": "products-by-tag",
+      "settings": {
+        "heading": "",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "layout": "inline",
+        "link_text": "",
+        "color_scheme": "",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 8,
+        "width": "wrapper--full-padded",
+        "layout_mobile": "slider",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "section_double_TeWQ4W": {
+      "type": "section-double",
+      "blocks": {
+        "heading_CpKBcJ": {
+          "type": "heading",
+          "settings": {
+            "title": "The Maker's Story",
+            "heading_font_size": "heading-medium",
+            "padding_bottom": 16,
+            "heading_tag": "h2"
+          }
+        },
+        "text_gf4DCm": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.story | metafield_tag }}",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_CpKBcJ",
+        "text_gf4DCm"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_1": "{{ metaobject.story_image.value }}",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "is-reversed",
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-third--mobile",
+        "reverse_blocks": true,
+        "center_text": false,
+        "custom_class": "",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "color_scheme": "scheme-0453232a-ec50-4ae9-a40c-00f8c1b7dd56",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    }
+  },
+  "order": [
+    "section_double_3zmmWb",
+    "section_collection_LnRJXA",
+    "products_by_tag_ff4jUz",
+    "section_double_TeWQ4W"
+  ]
+}

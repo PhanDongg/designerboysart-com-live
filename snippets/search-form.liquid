@@ -1,0 +1,20 @@
+<main-search>
+  <div class="search-outer">
+    <form action="{{ routes.search_url }}" class="search-form">
+      <input name="options[prefix]" type="hidden" value="last">
+      <div class="input-holder">
+        <input
+          type="search"
+          name="q"
+          class="search-box"
+          aria-label="{{ 'general.search.placeholder' | t }}"
+          placeholder="{{ 'general.search.title' | t }}"
+          value="{{ search.terms }}">
+          <button type="reset" class="search-reset{% if search.terms == blank %} hidden{% endif %}" aria-label="{{ 'general.search.reset' | t }}">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cancel" viewBox="0 0 24 24"><path d="M6.758 17.243 12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+      <button type="submit" class="btn btn--primary btn--solid search-submit" aria-label="{{ 'general.search.search' | t }}">{%- render 'icon-search' -%}</button>
+    </form>
+  </div>
+</main-search>

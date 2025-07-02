@@ -1,0 +1,340 @@
+{%- liquid
+  assign color_scheme = 'color-' | append: section.settings.color_scheme
+
+  assign product_limit = section.settings.products_per_page
+  assign blocks_featured_image = section.blocks | where: "type", "featured_image"
+
+  assign columns_desktop = section.settings.grid | plus: 0
+  assign columns_medium = 3
+  assign columns_small = 2
+  assign columns_mobile = section.settings.grid_mobile | plus: 0
+
+  if columns_desktop == 2 or columns_desktop == 4
+    assign columns_medium = 2
+  endif
+
+  assign animation_anchor = '.collection-' | append: collection.handle
+  assign animation_duration = 800
+
+    assign sets = "our_collections_set_1,our_collections_set_2,our_collections_set_3,our_collections_set_4,our_collections_set_5,our_collections_set_6,our_collections_set_7,our_collections_set_8" | split: ","
+    assign our_collections = "" 
+    for set in sets
+        for related_product in page.metafields.custom[set].value 
+            assign our_collections = our_collections | append: related_product.url | append: "||" | append: related_product.title | append: "~~" 
+        endfor
+    endfor 
+    assign our_collections = our_collections | split: "~~" 
+-%}
+
+{%- capture image_sizes -%}
+  {%- if filter_layout == 'inline-open' and enable_filters -%}
+    {%- if settings.grid_style == 'compact' -%}
+      (min-width: 990px) calc((100vw - 288px) / {{ columns_desktop }}), (min-width: 750px) calc((100vw - 258px) / {{ columns_medium }}), (min-width: 480px) calc(100vw / {{ columns_small }}), calc(100vw / {{ columns_mobile }})
+    {%- else -%}
+      (min-width: 990px) calc((100vw - 288px - 100px) / {{ columns_desktop }} - 32px), (min-width: 750px) calc((100vw - 258px - 64px) / {{ columns_medium }} - 32px), (min-width: 480px) calc((100vw - 32px) / {{ columns_small }}), calc((100vw - 32px) / {{ columns_mobile }})
+    {%- endif -%}
+  {%- else-%}
+    {%- if settings.grid_style == 'compact' -%}
+      (min-width: 990px) calc((100vw) / {{ columns_desktop }}), (min-width: 750px) calc((100vw) / {{ columns_medium }}), (min-width: 480px) calc(100vw / {{ columns_small }}), calc(100vw / {{ columns_mobile }})
+    {%- else -%}
+      (min-width: 990px) calc((100vw - 100px) / {{ columns_desktop }} - 32px), (min-width: 750px) calc((100vw - 64px) / {{ columns_medium }} - 32px), (min-width: 480px) calc((100vw - 32px) / {{ columns_small }}), calc((100vw - 32px) / {{ columns_mobile }})
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- style -%}
+  #CollectionArtists--{{ section.id }} {
+    --PT: {{ section.settings.padding_top }}px;
+    --PB: {{ section.settings.padding_bottom }}px;
+
+    --COLUMNS: {{ columns_desktop }};
+    --COLUMNS-MEDIUM: {{ columns_medium }};
+    --COLUMNS-SMALL: {{ columns_small }};
+    --COLUMNS-MOBILE: {{ columns_mobile }};
+
+    {% unless border_color == 'rgba(0,0,0,0)' or border_color == blank %}
+      --border-hairline: {{ border_color }};
+    {% endunless %}
+  }
+{%- endstyle -%}
+
+
+{% comment %}
+{% assign sets = "our_collections_set_1,our_collections_set_2,our_collections_set_3,our_collections_set_4,our_collections_set_5,our_collections_set_6,our_collections_set_7,our_collections_set_8" | split: "," %}
+{% for set in sets %}
+    {% for related_product in page.metafields.custom[set].value %}
+        <a href="{{ related_product.url }}">{{ related_product.title }}</a>
+    {% endfor %}
+{% endfor %}
+
+
+<hr />
+
+{% assign sets = "our_collections_set_1,our_collections_set_2,our_collections_set_3,our_collections_set_4,our_collections_set_5,our_collections_set_6,our_collections_set_7,our_collections_set_8" | split: "," %}
+{% assign all_products = "" %}
+
+{% for set in sets %}
+    {% for related_product in page.metafields.custom[set].value %}
+        {% assign all_products = all_products | append: related_product.url | append: "||" | append: related_product.title | append: "~~" %}
+    {% endfor %}
+{% endfor %}
+{% assign all_products = all_products | split: "~~" %}
+
+<ul>
+{% for product in all_products %}
+    {% assign product_data = product | split: "||" %}
+    {% if product_data[0] != blank %}
+        <li><a href="{{ product_data[0] }}">{{ product_data[1] }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% paginate collections by 15 %}
+  <ul id="collections-list">
+    {% for collection in collections %}
+      {% assign collection_group = collection.metafields.custom.collection_group %}
+      {% unless collection.title contains "Canvas" or collection.title contains "Prints" or collection.title contains "Print Art" %}
+        {% if collection_group == "Our Collection" %}
+            <li class="collection-item">
+            <a href="{{ collection.url }}">{{ collection.title }}</a>
+            </li>
+        {% elsif collection_group == blank and collection.title contains "Collection" %}
+          {%- render 'our-collection-grid', metaobject: collection, animation_delay: animation_delay, index: forloop.index -%}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  </ul>
+
+  {% if paginate.pages > 1 %}
+    <div class="pagination">
+      {% if paginate.previous %}
+        <a href="{{ paginate.previous.url }}">Previous</a>
+      {% endif %}
+
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <a href="{{ part.url }}">{{ part.title }}</a>
+        {% else %}
+          <span class="current">{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginate.next %}
+        <a href="{{ paginate.next.url }}">Next</a>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endpaginate %}
+{% endcomment %}
+
+{% if collections != "" %}
+  {%- paginate collections by product_limit -%}   
+    <section class="collection collection-products collection-{{ page.handle }} section-padding {{ color_scheme }}"
+        id="CollectionArtists--{{ section.id }}"
+        data-section-id="{{ section.id }}">
+
+        <div class="hero__content__wrapper text-center wrapper--narrow MetaobjectLoopFilter">
+          <div class="search-filter-meta">
+            {% render 'icon-search' %}
+            <input type="text" id="search-filter" placeholder="Search by Collection Name">  
+          </div>
+        </div>
+
+        <div class="collection__products MetaobjectLoopWrapper">
+            <div class="grid-outer" data-metaobjects-grid>
+                <div class="grid" id="MetaobjectLoop">
+                  {% if collections != "" %}
+
+                        {%- for metaobject in collections -%}
+                          {%- assign collection_title = metaobject.title -%}
+                          {%- assign collection_group = metaobject.metafields.custom.collection_group -%}
+
+                          {%- if collection_title contains 'Collection' and collection_group != blank -%}
+                                  {%- assign grid_int = section.settings.grid | times: 1 -%}
+                                  {%- assign animation_delay = forloop.index0 | modulo: grid_int | times: 1 -%}
+                                  {%- render 'our-collection-grid', metaobject: metaobject, animation_delay: animation_delay, index: forloop.index -%}
+                          {% endif %}
+                        {%- endfor -%}
+
+                  {%- else -%}
+                      <div class="no-results">
+                        <p><strong>No Collection Found</strong></p>              
+                      </div>
+                  {%- endif -%}
+
+                </div>
+
+              <div class="grid__loader_loader">
+                  <button id="load-more-button" data-next-url="{{ paginate.next.url }}" class="button btn btn--outline btn--black">Load More</button>
+              </div>
+
+            </div>
+        </div>
+    </section>
+  {%- endpaginate -%}
+{%- endif -%}    
+
+<script id="search-data" type="application/json">
+    [
+{%- for metaobject in collections -%}
+    {%- assign collection_title = metaobject.title -%}
+    {%- assign collection_group = metaobject.metafields.custom.collection_group -%}
+    
+    {% comment %}
+    {%- if collection_title contains 'Collection' or collection_group != blank -%}
+    {% endcomment %}
+
+    {%- if collection_title contains 'Collection' and collection_group != blank -%}
+        {%- capture metaobject_html -%}
+            {%- render 'our-collection-grid', metaobject: metaobject, index: forloop.index -%}
+        {%- endcapture -%}
+        {
+            "title": {{ metaobject.title | json }},
+            "handle": {{ metaobject.handle | json }},
+            "html": {{ metaobject_html | json }}
+        }{% unless forloop.last %},{% endunless %}
+    {%- endif -%}
+{%- endfor -%}
+
+    ]
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search-filter");
+    const resultsContainer = document.getElementById("MetaobjectLoop");
+    const loadMoreButton = document.getElementById("load-more-button");
+
+    let allData = JSON.parse(document.getElementById("search-data").textContent);
+    let itemsPerPage = 16;
+    let currentPage = 1;
+
+    function getPaginatedItems() {
+        let startIndex = (currentPage - 1) * itemsPerPage;
+        return allData.slice(0, startIndex + itemsPerPage);
+    }
+
+    function renderItems(items) {
+        resultsContainer.innerHTML = items.map(item => item.html).join("");
+        loadMoreButton.style.display = items.length < allData.length ? "block" : "none";
+    }
+
+    function loadMore() {
+        currentPage++;
+        renderItems(getPaginatedItems());
+    }
+
+    searchInput.addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase().trim();
+        currentPage = 1; // Reset pagination
+
+        if (!searchTerm) {
+            renderItems(getPaginatedItems());
+        } else {
+            let filteredItems = allData.filter(item => item.title.toLowerCase().includes(searchTerm));
+            if (filteredItems.length > 0) {
+                renderItems(filteredItems);
+            } else {
+                resultsContainer.innerHTML = `<div class="no-results"><p><strong>No Collection Found</strong></p></div>`;
+                loadMoreButton.style.display = "none";
+            }
+        }
+    });
+
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener("click", loadMore);
+    }
+
+    // Initial render
+    renderItems(getPaginatedItems());
+});
+
+</script>
+
+{% schema %}
+{
+  "name": "Our Collections v2",
+  "settings": [
+    {
+        "type": "header",
+        "content": "Product grid"
+      },
+      {
+        "type":    "range",
+        "id":      "grid",
+        "label":   "Products per row on desktop",
+        "min":     2,
+        "max":     6,
+        "step":    1,
+        "default": 3
+      },
+      {
+        "type": "radio",
+        "id": "grid_mobile",
+        "label": "Products per row on mobile",
+        "options": [
+          {
+            "value": "1",
+            "label": "One"
+          },
+          {
+            "value": "2",
+            "label": "Two"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type":    "range",
+        "id":      "products_per_page",
+        "min":     1,
+        "max":     24,
+        "step":    1,
+        "label":   "Products per page",
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "default": "scheme_1",
+        "label": "Color scheme"
+      },
+      {
+        "type": "header",
+        "content": "Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Bottom",
+        "default": 0
+      }      
+  ],
+  "presets": [
+    {
+      "name": "Our Collections v2"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside", "footer"]
+  }  
+}
+{% endschema %} 

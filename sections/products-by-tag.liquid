@@ -1,0 +1,750 @@
+{%- liquid
+  assign animation_order = 0
+  assign animation_anchor = '#tagCollection--' | append: section.id
+  assign layout_desktop = section.settings.layout_desktop
+  assign layout_mobile = section.settings.layout_mobile
+  assign heading = section.settings.heading
+  assign description = section.settings.description
+  assign link_text = section.settings.link_text
+  assign color_scheme = 'color-' | append: section.settings.color_scheme
+  assign has_content = false
+  if heading != blank or description != blank or link_text != blank
+    assign has_content = true
+  endif
+
+  assign grid_columns = section.settings.grid
+  assign grid_rows = section.settings.rows
+  assign layout = section.settings.layout
+
+  capture product_grid_classes
+    echo 'grid'
+
+    if layout_desktop == 'slider'
+      echo ' grid--slider'
+    endif
+
+    if layout_mobile == 'slider'
+      echo ' grid--mobile-slider'
+    else
+      echo ' grid--mobile-vertical'
+    endif
+  endcapture
+
+  assign columns_desktop = grid_columns | plus: 0
+  assign columns_medium = 3
+  assign columns_small = 2
+  assign columns_mobile = layout_mobile | plus: 0
+
+	if columns_desktop == 2 or columns_desktop == 4
+    assign columns_medium = 2
+  endif
+
+  if layout_desktop == 'grid'
+    assign limit_products = grid_columns | times: grid_rows
+    assign limit_onboarding = limit_products
+
+    if grid_columns == 2 or grid_columns == 4
+      assign columns_medium = 2
+    endif
+  endif
+
+  assign path_parts = request.path | split: '/' 
+  assign metaobject = path_parts[2] | remove_first: 'our-'
+  assign metaobject_handle = path_parts[3] 
+
+-%}
+
+{%- style -%}
+ #tagCollection--{{ section.id }} {
+    --PT: {{ section.settings.padding_top }}px;
+    --PB: {{ section.settings.padding_bottom }}px;
+
+    {%- if has_content -%}
+      --PT-MOBILE: max({{ section.settings.padding_top }}px, calc(var(--gutter) * 2));
+    {%- endif -%}
+
+    --COLUMNS: {{ columns_desktop }};
+    --COLUMNS-MEDIUM: {{ columns_medium }};
+    --COLUMNS-SMALL: {{ columns_small }};
+    --COLUMNS-MOBILE: {{ columns_mobile }};
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    background: transparent;
+    padding-bottom: 50px;
+  }
+
+  .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-top: 4px solid #333;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  } 
+  
+{%- endstyle -%}
+
+
+<section id="tagCollection--{{ section.id }}"
+  class="index-products section-padding {{ color_scheme }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="product-grid">
+    <div class="products-by-tag">
+      <span id="tag-name" class="hidden">
+        {{ metaobject }}-{{ metaobject_handle }}
+      </span>
+    </div>
+
+    <div class="grid-container{% if layout == 'left' %} grid-container--inline{% endif %}{% if layout_desktop == 'grid' %} {{ section.settings.width }}{% endif %}">
+      {%- if has_content -%}
+        <div class="grid__heading-holder{% if layout == 'inline' %} grid__heading-holder--inline{% elsif layout == 'left' %} grid__heading-holder--sticky{% elsif layout == 'center' %} text-center{% endif %}">
+          {%- if heading != blank or description != blank -%}
+            <div class="grid__heading-text">
+              {%- if heading != blank -%}
+                {%- liquid
+                  assign animation_order = animation_order | plus: 1
+                  assign heading_tag = 'h2'
+
+                  unless section.settings.heading_tag == 'automatic' or section.settings.heading_tag == blank
+                    assign heading_tag = section.settings.heading_tag
+                  endunless
+                -%}
+
+                <{{ heading_tag }} class="grid__heading {{ section.settings.heading_font_size }}"
+                  data-aos="hero"
+                  data-aos-anchor="{{ animation_anchor }}"
+                  data-aos-order="{{ animation_order }}">{{ heading }}</{{ heading_tag }}>
+              {%- endif -%}
+
+              {%- if description != blank -%}
+                {%- assign animation_order = animation_order | plus: 1 -%}
+                <div class="grid__description {{ section.settings.text_font_size }}"
+                  data-aos="hero"
+                  data-aos-anchor="{{ animation_anchor }}"
+                  data-aos-order="{{ animation_order }}">
+                  {{ description }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if link_text != blank -%}
+            {%- assign animation_order = animation_order | plus: 1 -%}
+            <div class="grid__heading-actions"
+              data-aos="hero"
+              data-aos-anchor="{{ animation_anchor }}"
+              data-aos-order="{{ animation_order }}">
+              <a class="btn {{ button_style }} {{ section.settings.button_size }} {{ section.settings.button_type }}"
+                href="{% if section.settings.link_url != blank %}{{ section.settings.link_url }}{% else %}{{ featured_collection.url }}{% endif %}">
+                <span>{{ link_text | escape }}</span>
+
+                {%- if section.settings.show_arrow -%}
+                  {%- render 'icon-arrow-right' -%}
+                {%- endif -%}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="grid__items-holder">
+        <div class="grid-outer">
+          {%- if layout_desktop == 'slider' -%}
+            <grid-slider align-arrows>
+              <div id="product-list" class="{{ product_grid_classes }}" data-grid-slider></div>
+            </grid-slider>
+          {%- else -%}
+            <div id="product-list" class="{{ product_grid_classes }}"></div>
+            <p class="text-center"><button id="load-more" class="link--text uppercase">Load More</button></p>
+          {%- endif -%}          
+        </div>
+      </div>
+    </div>
+</section>
+
+<script>
+  window.customerData = {
+    isVIP: {% if customer and customer.tags contains 'status-approved' or customer.tags contains 'VIP' %}true{% else %}false{% endif %}
+  };
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const tagName = document.getElementById("tag-name").innerText.trim().toLowerCase();
+    const collectionUrl = `/collections/all/${tagName}`;
+    const productList = document.getElementById("product-list");
+    const loadMoreBtn = document.getElementById("load-more");
+
+    let productsData = [];
+    let currentIndex = 0;
+    const PRODUCTS_PER_LOAD = 16;
+
+    // Show loader
+    productList.innerHTML = `<div class="loader"><div class="spinner"></div></div>`;
+
+    if (!tagName) {
+      productList.innerHTML = `<p>No tag specified. Please try again later.</p>`;
+      const loader = document.querySelector(".loader");
+      if (loader) loader.remove();
+      if (loadMoreBtn) loadMoreBtn.style.display = "none";
+      return;
+    }
+
+    async function fetchAllPages(baseUrl) {
+      let page = 1;
+      let allHtml = "";
+      let morePages = true;
+
+      while (morePages) {
+        const url = `${baseUrl}?page=${page}`;
+        const response = await fetch(url, { redirect: "follow" });
+
+        if (!response.ok) break;
+
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+
+        const products = doc.querySelectorAll("#CollectionLoop [data-handle-copy]");
+        if (products.length === 0) {
+          morePages = false;
+        } else {
+          allHtml += text;
+          page++;
+        }
+      }
+
+      return allHtml;
+    }
+
+    async function loadProductsBatch() {
+      const fragment = document.createDocumentFragment();
+      const batch = productsData.slice(currentIndex, currentIndex + PRODUCTS_PER_LOAD);
+
+      await Promise.all(
+        batch.map(async ({ handle, rrpPrice }) => {
+          try {
+            const finalProducts = await fetch(`/products/${handle}.json`).then(res => res.json());
+
+            if (finalProducts.product) {
+              const product = finalProducts.product;
+              const productURL = `/products/${product.handle}`;
+              const images = product.images || [];
+              const mainImage = images[2]?.src || images[0]?.src || "placeholder.jpg";
+              const hoverImage = images[1]?.src || mainImage;
+
+              let price;
+              if (window.customerData?.isVIP) {
+                price = product.variants[0]?.price || "N/A";
+              } else {
+                price = rrpPrice
+                  ? parseFloat(rrpPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                  : product.variants[0]?.price
+                    ? (parseFloat(product.variants[0].price) / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                    : null;
+              }
+
+              console.log('variant price:', price);
+
+              const productItem = document.createElement("div");
+              productItem.classList.add("grid-item", "cc-grid-item", "product-item");
+              productItem.innerHTML = `
+                          <div class="product-item__image double__image" data-product-image>
+                            <a href="${productURL}" class="product-link" aria-label="${product.title}" data-product-link="${productURL}">
+                                <div class="product-item__bg" data-product-image-default>
+                                  <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                    <img src="${mainImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                  </figure>
+                                  <div class="product-item__bg__inner">
+                                  <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                    <img src="${hoverImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                  </figure>
+                                  </div>
+                                </div>
+                                <hover-images class="product-item__bg__under">
+                                  <div class="product-item__bg__slider" data-hover-slider>
+                                    <div class="product-item__bg__slide" data-hover-slide-touch>
+                                      <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                        <img src="${mainImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                      </figure>
+                                    </div>
+                                    <div class="product-item__bg__slide" data-hover-slide data-hover-slide-touch>
+                                      <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                        <img src="${hoverImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                      </figure>
+                                    </div>                                    
+                                  </div>
+                                </hover-images>
+                              </a>
+                            </div>
+                              <div class="product-information" data-product-information>
+                                <div class="product-item__info body-medium">
+                                   <a href="${productURL}" class="product-link" aria-label="${product.title}" data-product-link="${productURL}">
+                                      <p class="product-item__title">${product.title}</p>
+                                      <div class="product-item__price__holder">
+                                        <div class="product-item__price" data-product-price>
+                                          <span class="price">
+                                            <span class="new-price">
+                                              <small>From</small> $${price}
+                                            </span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                </div>
+                              </div>
+              `;
+
+              fragment.appendChild(productItem);
+            }
+          } catch (productError) {
+            console.error(`Error fetching product: ${handle}`, productError);
+          }
+        })
+      );
+
+      productList.appendChild(fragment);
+      currentIndex += PRODUCTS_PER_LOAD;
+
+      if (currentIndex >= productsData.length) {
+        loadMoreBtn.style.display = "none";
+      }
+    }
+
+    try {
+      const allHtml = await fetchAllPages(collectionUrl);
+
+      if (!allHtml || allHtml.trim() === "") {
+        productList.innerHTML = `<p>No products found for "${tagName}".</p>`;
+        const loader = document.querySelector(".loader");
+        if (loader) loader.remove();
+        loadMoreBtn.style.display = "none";
+        return;
+      }
+
+      const doc = new DOMParser().parseFromString(allHtml, "text/html");
+      const rawProductEls = [...doc.querySelectorAll("#CollectionLoop [data-handle-copy]")];
+
+      if (rawProductEls.length === 0) {
+        productList.innerHTML = `<p>No products found for "${tagName}".</p>`;
+        const loader = document.querySelector(".loader");
+        if (loader) loader.remove();
+        loadMoreBtn.style.display = "none";
+        return;
+      }
+
+
+      // Group canvas and normal products
+      productsData = Object.values(
+        rawProductEls.map(el => ({
+          handle: el.getAttribute("data-handle-copy"),
+          rrpPrice: el.getAttribute("data-rrp")
+            ? (parseFloat(el.getAttribute("data-rrp")) / 100).toFixed(2)
+            : null,
+        })).reduce((map, product) => {
+          const baseHandle = product.handle.replace("-canvas", "");
+          if (!map[baseHandle]) map[baseHandle] = { canvas: null, normal: null };
+          if (product.handle.includes("-canvas")) map[baseHandle].canvas = product;
+          else map[baseHandle].normal = product;
+          return map;
+        }, {})
+      );
+
+      const normalProducts = productsData.filter(({ normal }) => normal);
+      const canvasProducts = productsData.filter(({ canvas }) => canvas);
+      productsData = normalProducts.length > 0 ? normalProducts.map(p => p.normal) : canvasProducts.map(p => p.canvas);
+
+      // Clear loader and load initial products
+      productList.innerHTML = "";
+      await loadProductsBatch();
+
+      loadMoreBtn.addEventListener("click", async () => {
+        loadMoreBtn.innerText = "Loading...";
+        loadMoreBtn.disabled = true;
+
+        await loadProductsBatch();
+
+        loadMoreBtn.innerText = "Load More";
+        loadMoreBtn.disabled = false;
+      });
+    } catch (error) {
+      console.error("Error fetching collection:", error);
+      productList.innerHTML = `<p>Artworks could not be loaded. Please try again later.</p>`;
+      loadMoreBtn.style.display = "none";
+    }
+  });
+</script>
+
+
+
+
+
+
+
+{% comment %}
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+      const tagName = document.getElementById("tag-name").innerText.trim().toLowerCase();
+      const collectionUrl = `/collections/all/${tagName}`;
+      const productList = document.getElementById("product-list");
+
+      // Show loader before fetching data
+      productList.innerHTML = `<div class="loader"><div class="spinner"></div></div>`;
+
+      try {
+          const response = await fetch(collectionUrl, { redirect: "follow" });
+
+          console.log("Requested Collection URL:", collectionUrl);
+          console.log("Final Response URL:", response.url);
+          
+          if (response.url === window.location.origin + "/collections/all") {
+              console.warn("Collection does not exist, stopping product display.");
+              productList.innerHTML = `<p>No Artwork found for "${tagName}".</p>`;
+              return;
+          }
+
+          const text = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, "text/html");
+
+          // Extract product handles & RRP prices from data attributes
+          /*const productsData = [...doc.querySelectorAll("#CollectionLoop [data-handle-copy]")]
+          .filter(el => !el.getAttribute("data-handle-copy").includes("canvas"))
+          .map(el => ({
+              handle: el.getAttribute("data-handle-copy"),
+              rrpPrice: el.getAttribute("data-rrp") ? (parseFloat(el.getAttribute("data-rrp")) / 100).toFixed(2) : null
+          }));*/
+
+    const productsData = Object.values([...doc.querySelectorAll("#CollectionLoop [data-handle-copy]")]
+    .map(el => ({
+      handle: el.getAttribute("data-handle-copy"),
+      rrpPrice: el.getAttribute("data-rrp") ? (parseFloat(el.getAttribute("data-rrp")) / 100).toFixed(2) : null
+    }))
+    .reduce((map, product) => {
+      const baseHandle = product.handle.replace('-canvas', '');
+      if (!map[baseHandle]) map[baseHandle] = { canvas: null, normal: null };
+      if (product.handle.includes('-canvas')) map[baseHandle].canvas = product;
+      else map[baseHandle].normal = product;
+      return map;
+    }, {}))
+    .map(({ canvas, normal }) => canvas || normal);
+
+
+        if (productsData.length) {
+            const fragment = document.createDocumentFragment(); // To batch DOM updates
+            
+            // Fetch product details for each handle
+            await Promise.all(productsData.map(async ({ handle, rrpPrice }) => {
+                try {
+                    const productData = await fetch(`/products/${handle}.json`).then(res => res.json());
+
+                    //console.log("products:", productData);
+
+                    if (productData.product) {
+                        const product = productData.product;
+                        const productURL = `/products/${product.handle}`;
+
+                        // Get images with fallbacks
+                        const images = product.images || [];
+                        const mainImage = images[2]?.src || images[0]?.src || "placeholder.jpg";
+                        const hoverImage = images[1]?.src || mainImage;
+
+                        // Determine the price based on customer status 
+                        let price;
+                        if (window.customerData?.isVIP) {
+                            price = product.variants[0]?.price || "N/A";
+                        } else {
+                            price = rrpPrice 
+                            ? parseFloat(rrpPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
+                            : (product.variants[0]?.price 
+                                ? (parseFloat(product.variants[0].price) / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
+                                : null);
+                        }
+
+                        // Create product item
+                        const productItem = document.createElement("div");
+                        productItem.classList.add("grid-item", "cc-grid-item", "product-item");
+                        productItem.innerHTML = `
+                          <div class="product-item__image double__image" data-product-image>
+                            <a href="${productURL}" class="product-link" aria-label="${product.title}" data-product-link="${productURL}">
+                                <div class="product-item__bg" data-product-image-default>
+                                  <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                    <img src="${mainImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                  </figure>
+                                  <div class="product-item__bg__inner">
+                                  <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                    <img src="${hoverImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                  </figure>
+                                  </div>
+                                </div>
+                                <hover-images class="product-item__bg__under">
+                                  <div class="product-item__bg__slider" data-hover-slider>
+                                    <div class="product-item__bg__slide" data-hover-slide-touch>
+                                      <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                        <img src="${mainImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                      </figure>
+                                    </div>
+                                    <div class="product-item__bg__slide" data-hover-slide data-hover-slide-touch>
+                                      <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" data-aos="img-in" data-aos-delay="0" data-aos-duration="800" data-aos-easing="ease-out-quart">
+                                        <img src="${hoverImage}" alt="${product.title}" class="main-image" fetchpriority="high" class="fit-cover" loading="eager">
+                                      </figure>
+                                    </div>                                    
+                                  </div>
+                                </hover-images>
+                              </a>
+                            </div>
+                              <div class="product-information" data-product-information>
+                                <div class="product-item__info body-medium">
+                                   <a href="${productURL}" class="product-link" aria-label="${product.title}" data-product-link="${productURL}">
+                                      <p class="product-item__title">${product.title}</p>
+                                      <div class="product-item__price__holder">
+                                        <div class="product-item__price" data-product-price>
+                                          <span class="price">
+                                            <span class="new-price">
+                                              <small>From</small> $${price}
+                                            </span>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                </div>
+                              </div>
+                        `;
+
+                        // Append to fragment
+                        fragment.appendChild(productItem);
+                    }
+                } catch (productError) {
+                    console.error(`Error fetching Artwork: ${handle}`, productError);
+                }
+            }));
+
+            // Remove loader & append all products at once (better performance)
+            productList.innerHTML = "";
+            productList.appendChild(fragment);
+        } else {
+            productList.innerHTML = `<p>No Artwork found for "${tagName}".</p>`;
+        }
+    } catch (error) {
+        console.error("Error fetching collection:", error);
+        productList.innerHTML = `<p>Artworks could not be loaded. Please try again later.</p>`;
+    }
+});
+</script>
+{% endcomment %}
+
+
+{% schema %}
+{
+  "name": "Products by Tag",
+  "settings": [
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "label": "Heading",
+        "id": "heading",
+        "type": "text",
+        "default": "Best Sellers"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_size",
+        "label": "Heading size",
+        "default": "heading-medium",
+        "options": [
+          {"value": "heading-mini", "label": "Mini"},
+          {"value": "heading-x-small", "label": "Extra small"},
+          {"value": "heading-small", "label": "Small"},
+          {"value": "heading-medium", "label": "Medium"},
+          {"value": "heading-large", "label": "Large"},
+          {"value": "heading-x-large", "label": "Extra large"}
+        ]
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Text"
+      },
+      {
+        "type": "select",
+        "id": "text_font_size",
+        "label": "Text size",
+        "info": "Automatically generated by the base size. Applies only when content in Text field is set to Paragraph.",
+        "default": "body-medium",
+        "options": [
+          {"value": "body-x-small", "label": "Extra small"},
+          {"value": "body-small", "label": "Small"},
+          {"value": "body-medium", "label": "Medium"},
+          {"value": "body-large", "label": "Large"},
+          {"value": "body-x-large", "label": "Extra large"}
+        ]
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "inline",
+            "label": "In-line"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }
+        ],
+        "default": "inline"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Text",
+        "default": "Shop Now"
+      },    
+      { 
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "default": "scheme_1",
+        "label": "Color scheme"
+      },
+{
+        "type": "header",
+        "content": "Desktop"
+      },
+      {
+        "type": "select",
+        "id": "layout_desktop",
+        "label": "Product grid layout",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid"
+          },
+          {
+            "value": "slider",
+            "label": "Slider"
+          }
+        ],
+        "default": "grid"
+      },
+      {
+        "type": "header",
+        "content": "Grid",
+        "info": "Applies only when product grid layout is set to Grid"
+      },
+      {
+        "type":    "range",
+        "id":      "grid",
+        "label":   "Products per row",
+        "min":     2,
+        "max":     6,
+        "step":    1,
+        "default": 4
+      },
+      {
+        "type":    "range",
+        "id":      "rows",
+        "label":   "Number of rows",
+        "min":     1,
+        "max":     8,
+        "step":    1,
+        "default": 3
+      },
+      {
+        "type": "select",
+        "id": "width",
+        "label": "Width",
+        "default": "wrapper",
+        "options": [
+          {"value": "wrapper--full-padded", "label": "Full width padded"},
+          {"value": "wrapper", "label": "Normal"}
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Mobile"
+      },
+      {
+        "type": "select",
+        "id": "layout_mobile",
+        "label": "Product grid layout",
+        "options": [
+          {
+            "value": "1",
+            "label": "1 item per row"
+          },
+          {
+            "value": "2",
+            "label": "2 items per row"
+          },
+          {
+            "value": "slider",
+            "label": "Slider"
+          }
+        ],
+        "default": "slider"
+      },      
+      {
+        "type": "header",
+        "content": "Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Bottom",
+        "default": 0
+      }    
+  ],
+  "presets": [
+    {
+      "name": "Products by Tag"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside", "footer"]
+  }  
+}
+{% endschema %}
+
+
+

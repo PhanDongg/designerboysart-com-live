@@ -1,0 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cart",
+      "blocks": {
+        "gift-note": {
+          "type": "gift-note",
+          "disabled": true,
+          "settings": {}
+        },
+        "order-note": {
+          "type": "order-note",
+          "settings": {
+            "note_sub_title": "(e.g. hanging orientation preference etc.)"
+          }
+        },
+        "checkout-buttons": {
+          "type": "checkout-buttons",
+          "settings": {
+            "enable_additional_buttons": false
+          }
+        }
+      },
+      "block_order": [
+        "gift-note",
+        "order-note",
+        "checkout-buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-06ea0977-5357-4947-a0db-2cdf6a234d46",
+        "padding_top": 80,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

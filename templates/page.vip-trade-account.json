@@ -1,0 +1,510 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "heading_font_size": "heading-large",
+        "show_content": false,
+        "text_font_size": "body-medium",
+        "align_text": "text-center",
+        "image_banner": "{{ page.metafields.custom.header_banner.value }}",
+        "overlay_opacity": 20,
+        "height": "image-height",
+        "mobile_height": "screen-height-one-third--mobile",
+        "width": "wrapper--full-padded",
+        "color_scheme": "scheme-10",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_rich_text_D3DByb": {
+      "type": "section-rich-text",
+      "blocks": {
+        "heading_CQjWLY": {
+          "type": "heading",
+          "settings": {
+            "title": "Become a VIP Trade Customer to Receive Wholesale Pricing & More!",
+            "heading_font_size": "heading-medium",
+            "padding_bottom": 16,
+            "heading_tag": "h1"
+          }
+        },
+        "text_xKiKAc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>All approved VIP Trade Customers will receive a notification email within 24 business hours of registration.</p>",
+            "text_font_size": "body-large",
+            "read_more": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_CQjWLY",
+        "text_xKiKAc"
+      ],
+      "settings": {
+        "align_text": "text-left",
+        "width": "wrapper--narrow",
+        "color_scheme": "scheme-2",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    },
+    "contact_form_d6cC9B": {
+      "type": "contact-form",
+      "blocks": {
+        "text_ecwj7D": {
+          "type": "text",
+          "settings": {
+            "title": "First Name",
+            "required": true
+          }
+        },
+        "text_zcYpUa": {
+          "type": "text",
+          "settings": {
+            "title": "Last Name",
+            "required": true
+          }
+        },
+        "email_XMPDUU": {
+          "type": "email",
+          "settings": {
+            "title": "Email",
+            "required": true
+          }
+        },
+        "password_EfgkKU": {
+          "type": "password",
+          "settings": {
+            "title": "Password",
+            "require_password": true
+          }
+        },
+        "telephone_ycfBxR": {
+          "type": "telephone",
+          "settings": {
+            "title": "Mobile",
+            "required": false
+          }
+        },
+        "text_7iHRPK": {
+          "type": "text",
+          "settings": {
+            "title": "ABN",
+            "required": false
+          }
+        },
+        "form_heading_3LwCmw": {
+          "type": "formHeading",
+          "disabled": true,
+          "settings": {
+            "title": "Business Details"
+          }
+        },
+        "radio_M3GUbc": {
+          "type": "radio",
+          "disabled": true,
+          "settings": {
+            "title": "Pick an option",
+            "required": false,
+            "label-one": "Option one",
+            "label-two": "Option two",
+            "label-three": "",
+            "label-four": "",
+            "label-five": "",
+            "label-six": ""
+          }
+        },
+        "checkbox_RfrKFt": {
+          "type": "checkbox",
+          "disabled": true,
+          "settings": {
+            "title": "How did you hear about us?",
+            "required": true,
+            "label-one": "Web search",
+            "label-two": "Social media",
+            "label-three": "Word of mouth",
+            "label-four": "Referral",
+            "label-five": "Trade Show",
+            "label-six": "Other"
+          }
+        },
+        "text_mKp66a": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "Company Name",
+            "required": false
+          }
+        },
+        "telephone_LmL8wm": {
+          "type": "telephone",
+          "disabled": true,
+          "settings": {
+            "title": "Phone Number",
+            "required": false
+          }
+        },
+        "checkbox_C3wNFh": {
+          "type": "checkbox",
+          "settings": {
+            "title": "How did you hear about us?",
+            "required": false,
+            "label-one": "Web search",
+            "label-two": "Social media",
+            "label-three": "Word of mouth",
+            "label-four": "Referral",
+            "label-five": "Trade Show",
+            "label-six": "Other"
+          }
+        },
+        "spacer_Xwyzfy": {
+          "type": "spacer",
+          "settings": {
+            "line": false
+          }
+        }
+      },
+      "block_order": [
+        "text_ecwj7D",
+        "text_zcYpUa",
+        "email_XMPDUU",
+        "password_EfgkKU",
+        "telephone_ycfBxR",
+        "text_7iHRPK",
+        "form_heading_3LwCmw",
+        "radio_M3GUbc",
+        "checkbox_RfrKFt",
+        "text_mKp66a",
+        "telephone_LmL8wm",
+        "checkbox_C3wNFh",
+        "spacer_Xwyzfy"
+      ],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-large",
+        "success_message": "",
+        "usefor_customer": true,
+        "enable_newsletter": true,
+        "hide_labels": false,
+        "terms": false,
+        "width": "wrapper--narrow",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 30,
+        "custom_id": "vip-page-1",
+        "submit_text": "Next",
+        "heading_tag": "automatic"
+      }
+    },
+    "contact_form_DV78J8": {
+      "type": "contact-form",
+      "blocks": {
+        "email_C9CzLj": {
+          "type": "email",
+          "settings": {
+            "title": "Email",
+            "required": true
+          }
+        },
+        "telephone_rXcVMB": {
+          "type": "telephone",
+          "disabled": true,
+          "settings": {
+            "title": "Mobile",
+            "required": true
+          }
+        },
+        "text_6Q7a4G": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "ABN",
+            "required": true
+          }
+        },
+        "form_heading_XFAkdJ": {
+          "type": "formHeading",
+          "settings": {
+            "title": "Business Details"
+          }
+        },
+        "checkbox_349jya": {
+          "type": "checkbox",
+          "settings": {
+            "title": "How did you hear about us?",
+            "required": false,
+            "label-one": "Web search",
+            "label-two": "Social media",
+            "label-three": "Word of mouth",
+            "label-four": "Referral",
+            "label-five": "Trade Show",
+            "label-six": "Other"
+          }
+        },
+        "text_MPAELF": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "First Name",
+            "required": true
+          }
+        },
+        "text_RaBW7b": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "Last Name",
+            "required": true
+          }
+        },
+        "text_Ni4jhq": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "Company Name",
+            "required": true
+          }
+        },
+        "country_wCMgmB": {
+          "type": "country",
+          "disabled": true,
+          "settings": {
+            "title": "Country",
+            "placeholder": "Australia",
+            "required": true
+          }
+        },
+        "city_KiRTxn": {
+          "type": "city",
+          "disabled": true,
+          "settings": {
+            "title": "Suburb/City",
+            "placeholder": "Sydney",
+            "required": true
+          }
+        },
+        "state_x7VxYP": {
+          "type": "state",
+          "disabled": true,
+          "settings": {
+            "title": "State/Province",
+            "placeholder": "New South Wales",
+            "required": true
+          }
+        },
+        "address_line_1_8Mj8c8": {
+          "type": "address_line_1",
+          "disabled": true,
+          "settings": {
+            "title": "Address Line 1",
+            "placeholder": "Street address",
+            "required": true
+          }
+        },
+        "address_line_2_tw8mXN": {
+          "type": "address_line_2",
+          "disabled": true,
+          "settings": {
+            "title": "Address Line 2",
+            "placeholder": "Apartment, suite, etc. (optional)",
+            "required": false
+          }
+        },
+        "zip_TRW99q": {
+          "type": "zip",
+          "disabled": true,
+          "settings": {
+            "title": "Postcode",
+            "placeholder": "Enter Postcode",
+            "required": true
+          }
+        },
+        "telephone_4L8ypA": {
+          "type": "telephone",
+          "disabled": true,
+          "settings": {
+            "title": "Phone Number",
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "email_C9CzLj",
+        "telephone_rXcVMB",
+        "text_6Q7a4G",
+        "form_heading_XFAkdJ",
+        "checkbox_349jya",
+        "text_MPAELF",
+        "text_RaBW7b",
+        "text_Ni4jhq",
+        "country_wCMgmB",
+        "city_KiRTxn",
+        "state_x7VxYP",
+        "address_line_1_8Mj8c8",
+        "address_line_2_tw8mXN",
+        "zip_TRW99q",
+        "telephone_4L8ypA"
+      ],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-large",
+        "success_message": "We will review and approve your VIP Trade Registration status within the next business day",
+        "usefor_customer": true,
+        "enable_newsletter": false,
+        "hide_labels": false,
+        "terms": true,
+        "width": "wrapper--narrow",
+        "color_scheme": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_id": "vip-page-2",
+        "submit_text": "Create My Account",
+        "heading_tag": "automatic"
+      }
+    },
+    "section_rich_text_iGmHP3": {
+      "type": "section-rich-text",
+      "blocks": {
+        "heading_K6BCNy": {
+          "type": "heading",
+          "settings": {
+            "title": "Benefits of Joining",
+            "heading_font_size": "heading-xx-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_9QNeKx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Become a VIP Trade Customer and experience the many benefits of membership.</p>",
+            "text_font_size": "body-medium",
+            "read_more": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_K6BCNy",
+        "text_9QNeKx"
+      ],
+      "settings": {
+        "align_text": "text-center",
+        "width": "wrapper",
+        "color_scheme": "",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    },
+    "section_text_row_RAApVa": {
+      "type": "section-text-row",
+      "blocks": {
+        "icon_cLt3GE": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "icon_size": 40,
+            "icon_color": "",
+            "image": "shopify://shop_images/diamond.svg",
+            "title": "Preferential Pricing",
+            "heading_font_size": "heading-small",
+            "text": "<p>Access generous wholesale discounts on our entire wall art collection. Login following trade application approval to view wholesale pricing.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_C8Vxxg": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "icon_size": 60,
+            "icon_color": "",
+            "image": "shopify://shop_images/Vector_b4b2d4da-690d-41b9-b8fe-dff35b98254c.png",
+            "title": "Priority Access to our Entire Wall Art Range",
+            "heading_font_size": "heading-small",
+            "text": "<p>Enjoy access to our full range of artworks, canvas art, art print, frames and size options, as well as early release collections & seasonal specials.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_Wg9xa4": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "icon_size": 60,
+            "icon_color": "",
+            "image": "shopify://shop_images/art.svg",
+            "title": "Custom Wall Art Collections",
+            "heading_font_size": "heading-small",
+            "text": "<p>Access our team for special projects, including unreleased artwork collections, custom sizes & frames and our project curation service.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_xFLVmR": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "icon_size": 60,
+            "icon_color": "",
+            "image": "shopify://shop_images/vip.svg",
+            "title": "Complimentary Frame Samples",
+            "heading_font_size": "heading-small",
+            "text": "<p>Finalise frame selections with confidence, with our free frame samples. You’ll also be the first to know about new frames.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_cLt3GE",
+        "icon_C8Vxxg",
+        "icon_Wg9xa4",
+        "icon_xFLVmR"
+      ],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-x-large",
+        "align_heading": "text-center",
+        "align_text": "text-center",
+        "icon_alignment": "icon--top",
+        "width": "wrapper",
+        "align_columns": "flex-align-top",
+        "layout": "grid",
+        "grid": 4,
+        "layout_mobile": "1",
+        "color_scheme": "scheme-2",
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_rich_text_D3DByb",
+    "contact_form_d6cC9B",
+    "contact_form_DV78J8",
+    "section_rich_text_iGmHP3",
+    "section_text_row_RAApVa"
+  ]
+}

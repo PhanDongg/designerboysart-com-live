@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js no-touch supports-no-cookies" lang="{{ request.locale.iso_code }}">
+
+<head>
+  {%- render 'head' -%}
+
+  {{ content_for_header }}
+  <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'custom-collection.css' | asset_url }}">
+  {%- if template.name == 'product' -%}
+  <link rel="stylesheet" href="{{ 'custom-product.css' | asset_url }}">  
+  {%- endif -%}
+  <link rel="stylesheet" href="{{ 'mobile.css' | asset_url }}">
+  
+  <meta name="google-site-verification" content="RsoSXWs9936GjJ3r6bfCcCgpA--eoXWZssiE9hpvV6g" />
+</head>
+
+<body id="{{ page_title | handle }}" class="{% if customer and customer.tags contains 'status-approved' %} customer-status-approved {% endif %} template-{{ template.name | handle }} template__{{ template.suffix }} grid-{{ settings.grid_style }}{% if customer %} customer-logged-in{% endif %}{% if settings.animations_enable %} aos-initialized{% endif %}{% if settings.product_grid_outline %} has-line-design{% endif %}" data-animations="{{ settings.animations_enable }}">
+  {%- render 'loading' -%}
+  <div id="pull-down-refresh" style="display: none;"></div>
+
+  <a class="in-page-link visually-hidden skip-link" data-skip-content href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  <div class="container" data-site-container>
+    <div class="header-sections">
+      {% sections 'group-header' %}
+    </div>
+
+    {% sections 'group-overlay' %}
+
+    <!-- CONTENT -->
+    <main role="main" id="MainContent" class="main-content">
+      {{ content_for_layout }}
+    </main>
+  </div>
+
+  {% sections 'group-pre-footer' %}
+
+  <footer class="footer-sections">
+    {% sections 'group-footer' %}
+  </footer>
+
+  {% render 'template-swatch' %}
+
+  {% render 'zoom-pswp' %}
+
+
+  {%- if template.name != 'product' and settings.show_scroll_top_button -%}
+    <button type="button" class="btn btn--scroll-top btn--black btn--solid" aria-label="{{ 'general.accessibility.scroll_to_top' | t }}" data-scroll-top-button>
+      {%- render 'icon-arrow-up' -%}
+    </button>
+  {%- endif -%}
+
+
+  <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+  
+  <!-- Paste marketing code or third party scripts below this comment line ============== -->
+
+
+
+  <!-- And above this comment line ================================================== -->
+</body>
+</html>

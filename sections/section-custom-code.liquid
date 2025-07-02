@@ -1,0 +1,152 @@
+<!-- /sections/section-custom-code.liquid -->
+
+{%- assign color_scheme = 'color-' | append: section.settings.color_scheme -%}
+
+{%- style -%}
+  #CustomCode--{{ section.id }} {
+    --PT: {{ section.settings.padding_top }}px;
+    --PB: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section id="CustomCode--{{ section.id }}"
+  class="custom-code section-padding {{ section.settings.width }} {{ color_scheme }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="custom-code">
+  {{ section.settings.code }}
+
+  {%- if section.settings.enable_customer_activation -%}
+    {%- unless customer -%}
+<div id="activation-form">
+  <div class="form-field">
+    <label class="label--float" for="activation-email">Enter Your Email</label>
+    <input type="email" id="activation-email" required />
+  </div>
+  <div class="form-field" style="text-align: center;">
+    <button id="activate-btn" class="btn btn--primary btn--solid">Re-Activate My Account</button>
+  </div>
+  <div class="form-field" style="text-align: center;">
+    <div id="confirmation-message" style="display: none; background-color: var(--brand-secondary); text-align: center; padding: 20px;"></div>
+  </div>
+</div>
+
+
+<script>
+  document.getElementById('activate-btn')?.addEventListener('click', async function () {
+    const email = document.getElementById('activation-email')?.value?.trim();
+
+    if (!email) {
+      showConfirmationText('Please enter a valid email address.', 'red');
+      return;
+    }
+
+    try {
+      const response = await fetch('https://dba-customer-activation.vercel.app/api/activate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        showConfirmationText('Activation email sent if account exists.', 'green');
+      } else {
+        console.error(result);
+        showConfirmationText('Error: ' + (result?.error?.message || 'Something went wrong.'), 'red');
+      }
+    } catch (err) {
+      console.error(err);
+      showConfirmationText('Network error. Please try again.', 'red');
+    }
+  });
+
+  // Function to display confirmation text below the form
+  function showConfirmationText(message) {
+    const confirmationMessage = document.getElementById('confirmation-message');
+    confirmationMessage.textContent = message;
+    confirmationMessage.style.display = 'block';
+  }
+</script>
+
+
+
+    {% endunless %}
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "Custom code",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "code",
+      "label": "Custom code",
+      "info": "Add app snippets or other Liquid code to create advanced customizations."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_customer_activation",
+      "label": "Customer Activation"
+    },    
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper",
+      "options": [
+        {"value": "wrapper--full", "label": "Full width"},
+        {"value": "wrapper--full-padded", "label": "Full width padded"},
+        {"value": "wrapper", "label": "Normal"},
+        {"value": "wrapper--narrow", "label": "Narrow"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom code",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

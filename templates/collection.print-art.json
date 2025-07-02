@@ -1,0 +1,181 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "collection-image-with-title",
+      "settings": {
+        "show_title": true,
+        "show_description": true,
+        "flex_align": "align--middle-center",
+        "color_scheme": "scheme-2",
+        "show_text_background": false,
+        "show_image": false,
+        "banner_layout": "overlay",
+        "height": "two-fifty-height-hero",
+        "mobile_height": "two-fifty-height-hero--mobile",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 10,
+        "padding_bottom": 0
+      }
+    },
+    "subcollections": {
+      "type": "subcollections",
+      "disabled": true,
+      "settings": {
+        "subcollection_layout": "grid",
+        "subcollection_description": false,
+        "select_image": "collection",
+        "color_scheme": "scheme-2",
+        "color": "#ffffff",
+        "bg_color": "",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "main": {
+      "type": "collection",
+      "blocks": {
+        "featured_image_e6Dt3m": {
+          "type": "featured_image",
+          "disabled": true,
+          "settings": {
+            "featured_image": "{{ collection.metafields.custom.featured_block_image.value }}",
+            "position": 5,
+            "featured_heading": "{{ collection.metafields.custom.featured_block_title.value }}",
+            "heading_font_size": "heading-large",
+            "featured_text": "<p>{{ collection.metafields.custom.featured_block_content | metafield_tag }}</p>",
+            "featured_button_text": "{{ collection.metafields.custom.featured_block_button_text.value }}",
+            "featured_button_link": "{{ collection.metafields.custom.featured_block_link.value }}",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--text",
+            "show_arrow": false,
+            "featured_color_text": "#ffffff",
+            "featured_color_overlay": "#222222",
+            "featured_overlay_opacity": 10,
+            "heading_tag": "automatic"
+          }
+        },
+        "featured_image_rqdUKQ": {
+          "type": "featured_image",
+          "disabled": true,
+          "settings": {
+            "featured_image": "shopify://shop_images/designerboys-artwork-mercury-abstract.jpg",
+            "position": 1,
+            "featured_heading": "Featured link",
+            "heading_font_size": "heading-large",
+            "featured_text": "",
+            "featured_button_text": "Learn more",
+            "featured_button_link": "shopify://collections/print-art",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--text",
+            "show_arrow": false,
+            "featured_color_text": "#ffffff",
+            "featured_color_overlay": "#222222",
+            "featured_overlay_opacity": 10,
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "featured_image_e6Dt3m",
+        "featured_image_rqdUKQ"
+      ],
+      "settings": {
+        "enable_sort": true,
+        "enable_filters": true,
+        "filter_layout": "inline-open",
+        "default_open": false,
+        "collection_linklist": "type",
+        "grid": 4,
+        "grid_mobile": "2",
+        "products_per_page": 48,
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 50
+      }
+    },
+    "section_highlights_YQbKE8": {
+      "type": "section-highlights",
+      "blocks": {
+        "highlight_g9wfwE": {
+          "type": "highlight",
+          "settings": {
+            "heading": "All",
+            "url": "shopify://collections/print-art",
+            "color": "#212121",
+            "bg_color": "#f4f4f4",
+            "border_color": ""
+          }
+        },
+        "highlight_QX6pCJ": {
+          "type": "highlight",
+          "settings": {
+            "heading": "Prints",
+            "url": "shopify://collections/print-art",
+            "color": "#212121",
+            "bg_color": "#f4f4f4",
+            "border_color": ""
+          }
+        },
+        "highlight_GhBxkP": {
+          "type": "highlight",
+          "settings": {
+            "heading": "Kids",
+            "url": "shopify://collections/print-art",
+            "color": "#212121",
+            "bg_color": "#f4f4f4",
+            "border_color": ""
+          }
+        },
+        "highlight_9BX8A9": {
+          "type": "highlight",
+          "settings": {
+            "heading": "Textual",
+            "url": "shopify://collections/print-art",
+            "color": "#212121",
+            "bg_color": "#f4f4f4",
+            "border_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "highlight_g9wfwE",
+        "highlight_QX6pCJ",
+        "highlight_GhBxkP",
+        "highlight_9BX8A9"
+      ],
+      "settings": {
+        "style": "button",
+        "grid": 6,
+        "heading": "{{ collection.metafields.custom.seo_footer_title.value }}",
+        "description": "{{ collection.metafields.custom.seo_footer_description | metafield_tag }}",
+        "heading_position": "text-left",
+        "heading_font_size": "heading-x-small",
+        "text_font_size": "body-x-small",
+        "width": "wrapper--full-padded",
+        "layout_mobile": "2",
+        "color_scheme": "",
+        "padding_top": 30,
+        "padding_bottom": 80,
+        "heading_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "subcollections",
+    "main",
+    "section_highlights_YQbKE8"
+  ]
+}

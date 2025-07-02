@@ -1,0 +1,44 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "article",
+      "blocks": {
+        "related-products": {
+          "type": "related",
+          "settings": {
+            "title": "Shop The Journal",
+            "product_list": "{{ article.metafields.custom.related_products.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "related-products"
+      ],
+      "settings": {
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "tags": false,
+        "show_sharing": true,
+        "arrows": false,
+        "height": "five-fifty-height-hero",
+        "mobile_height": "image-height--mobile",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 15
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

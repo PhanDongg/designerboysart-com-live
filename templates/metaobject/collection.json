@@ -1,0 +1,138 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_double_ncLgUW": {
+      "type": "section-double",
+      "blocks": {
+        "heading_VCF7Dk": {
+          "type": "heading",
+          "settings": {
+            "title": "{{ metaobject.title.value }}",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_hBUNAy": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.description | metafield_tag }}",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_VCF7Dk",
+        "text_hBUNAy"
+      ],
+      "settings": {
+        "image_1": "{{ metaobject.banner.value }}",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "",
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-third--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
+    "section_collection_i9pcfV": {
+      "type": "section-collection",
+      "settings": {
+        "featured_collection": "{{ metaobject.related_collection.value }}",
+        "dynamic_collection": false,
+        "heading": "Discover from Collection",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "layout": "inline",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 8,
+        "width": "wrapper--full-padded",
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_double_NUHmE3": {
+      "type": "section-double",
+      "blocks": {
+        "heading_A4H7AF": {
+          "type": "heading",
+          "settings": {
+            "title": "{{ metaobject.artist.value.name.value }}",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_iVTzAJ": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.artist.value.story | metafield_tag }}",
+            "text_font_size": "body-medium",
+            "padding_bottom": 0
+          }
+        },
+        "buttons_kTjb7Y": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Learn more",
+            "button_url": "{{ metaobject.artist.value.system.url }}",
+            "button_type": "btn--black",
+            "button_size": "",
+            "button_style": "btn--text",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_A4H7AF",
+        "text_iVTzAJ",
+        "buttons_kTjb7Y"
+      ],
+      "settings": {
+        "image_1": "{{ metaobject.artist.value.photo.value }}",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "is-reversed",
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": true,
+        "color_scheme": "scheme-0453232a-ec50-4ae9-a40c-00f8c1b7dd56",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    }
+  },
+  "order": [
+    "section_double_ncLgUW",
+    "section_collection_i9pcfV",
+    "section_double_NUHmE3"
+  ]
+}

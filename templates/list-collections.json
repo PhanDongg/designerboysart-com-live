@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "list-collections",
+      "settings": {
+        "display_type": "all",
+        "title": "Collections",
+        "heading_font_size": "heading-medium",
+        "grid": 4,
+        "rows": 1,
+        "layout_mobile": "2",
+        "color_scheme": "",
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "heading_tag": "automatic"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

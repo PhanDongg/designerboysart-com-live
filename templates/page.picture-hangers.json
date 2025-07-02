@@ -1,0 +1,177 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "heading_font_size": "heading-large",
+        "show_content": true,
+        "text_font_size": "body-large",
+        "align_text": "text-center",
+        "overlay_opacity": 0,
+        "height": "screen-height-three-quarters",
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "h1"
+      }
+    },
+    "section_accordion_group_EJktmm": {
+      "type": "section-accordion-group",
+      "blocks": {
+        "heading_cLHWMY": {
+          "type": "heading",
+          "settings": {
+            "title": "RECOMMENDED PICTURE HANGERS BY STATE AND REGION"
+          }
+        },
+        "question_kPW8Ww": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "New South Wales",
+            "content": "<h4><strong>Sydney: </strong></h4><h5><strong>Hang it Up </strong></h5><p>Alex Lopez: 0401 231 289<br/>Email: info@hangitup.com.au<br/><a href=\"https://www.hangitupsolutions.com.au/\">https://www.hangitupsolutions.com.au/</a></p><h5><strong><br/>Professional Picture Hanging</strong></h5><p>Sharron Rutter: 0491 491 029<br/>Email: <a href=\"mailto:info@professionalpicturehanging.com.au\">info@professionalpicturehanging.com.au</a><a href=\"https://professionalpicturehanging.com.au/\"><br/>https://professionalpicturehanging.com.au/</a> </p><h5><strong><br/>Sydney Picture Hanging</strong></h5><p>Beau Major: 0410 258 709<br/>Email: beaumajor@gmail.com<br/><a href=\"https://sydneypicturehanging.com.au/\">https://sydneypicturehanging.com.au/</a> </p><h4><strong><br/>Hunter Region (Newcastle & Surrounds):</strong></h4><h5><strong>Artistic Solutions</strong></h5><p>Kynan: 0409 319 942<br/><a href=\"https://artisticsolutions.com.au/\">https://artisticsolutions.com.au/</a> </p><h4><strong><br/>Byron Bay and Northern NSW:</strong></h4><h5><strong>Picture Hanging Byron Bay</strong></h5><p>Matthew Routledge: <a href=\"tel:0414283713\">0414 283 713<br/></a>Email: <a href=\"mailto:hangtheexpense@gmail.com\">hangtheexpense@gmail.com<br/></a><a href=\"https://picturehangingbyronbay.com.au/\">https://picturehangingbyronbay.com.au/</a> </p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        },
+        "question_AAYGB8": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "Queensland",
+            "content": "<h4>Gold Coast & Northern NSW: </h4><h5><strong>Hang On</strong></h5><p>Raul and Robyn Norrlin: 0410 580 311<br/>Email: <a href=\"mailto:info@thepicutrehangingman.com\">info@thepicturehangingman.com</a><br/><a href=\"https://thepicturehangingman.com/\">https://thepicturehangingman.com/</a></p><h5><a href=\"https://thepicturehangingman.com/\"><br/></a><strong>Forwalls Art and Picture Hanging</strong></h5><p>Adam James: 0432 839 239 <br/>Email: <a href=\"mailto:hello@forwalls.com.au\">hello@forwalls.com.au<br/></a><a href=\"https://www.forwalls.com.au/\">https://www.forwalls.com.au/</a> </p><p></p><h4><strong>Brisbane:<br/></strong></h4><h5><strong>Brisbane Picture Hanging</strong></h5><p>Beau Major: 0410 258 709<br/>Email: beaumajor@gmail.com<br/><a href=\"https://brisbanepicturehanging.com.au/\">https://brisbanepicturehanging.com.au/</a><br/></p><h5><strong><br/>Professional Picture Hanging</strong></h5><p>Sharron Rutter: 0491 491 029<br/>Email: <a href=\"mailto:info@professionalpicturehanging.com.au\">info@professionalpicturehanging.com.au</a> <br/><a href=\"https://professionalpicturehanging.com.au/\">https://professionalpicturehanging.com.au/</a></p><h5><strong>Hangzen</strong></h5><p>Carlos Martinho: 1300 88 36 15<br/>Email: <a href=\"mailto:info@hangzen.com.au\">info@hangzen.com.au</a> <br/><a href=\"https://hangzen.com.au/\">https://hangzen.com.au/</a> </p><h4></h4><h4><strong>Sunshine Coast:</strong></h4><p>Right Hook Picture Hanging<br/>Mike McClughan: 0417 763 956<br/>Email: info@righthook.com.au<br/><a href=\"https://righthook.com.au/\">https://righthook.com.au/</a></p><h5><strong><br/>Sunshine Coast Picture Hanging</strong></h5><p>Mike: 0493 478 903<br/>Email: <a href=\"mailto:info@noosapicturehanging.com\">info@noosapicturehanging.com<br/></a><a href=\"https://sunshinecoastpicturehanging.com/\">https://sunshinecoastpicturehanging.com/</a> </p><h5><strong><br/>Hangzen</strong></h5><p>Luke Norman: 1300 88 36 15<br/>Email: <a href=\"mailto:info@hangzen.com.au\">info@hangzen.com.au</a> <br/><a href=\"https://hangzen.com.au/\">https://hangzen.com.au/</a> </p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        },
+        "question_fgderc": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "Victoria",
+            "content": "<h4><strong>Melbourne:</strong></h4><h5><strong><br/>The Picture Hanger</strong></h5><p>Jasper Inskip: 0409 284 81<br/>Email: info@thepicturehanger.com.au<br/><a href=\"https://thepicturehanger.com.au/\">https://thepicturehanger.com.au/</a></p><h5><strong><br/>Professional Picture Hanging</strong></h5><p>Sharron Rutter: 0491 491 029<br/>Email: <a href=\"mailto:info@professionalpicturehanging.com.au\">info@professionalpicturehanging.com.au</a> <br/><a href=\"https://professionalpicturehanging.com.au/\">https://professionalpicturehanging.com.au</a></p><h5><strong><br/>Hangzen</strong></h5><p>Martin Brown: 1300 88 36 15<br/>Email: <a href=\"mailto:info@hangzen.com.au\">info@hangzen.com.au</a> <br/><a href=\"https://hangzen.com.au/\" target=\"_blank\">https://hangzen.com.au/</a> </p><p></p><h5><strong>Pride of Place Picture Hanging</strong></h5><p>Chase Blatman: 0478 745 553<br/>Email: <a href=\"mailto:prideofplacepicturehanging@gmail.com\">prideofplacepicturehanging@gmail.com</a><br/><a href=\"https://www.prideofplacepicturehanging.com.au/\" target=\"_blank\">https://prideofplacepicturehanging.com.au/</a></p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        },
+        "question_TLD74K": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "South Australia",
+            "content": "<h4><strong>Adelaide</strong>: </h4><h5><strong>Hang Logic</strong></h5><p>Jacqueline Mitchell: 0432 924 305<br/>Email: <a href=\"mailto:team@hanglogic.com.au\">team@hanglogic.com.au</a> <br/><a href=\"https://hanglogic.com.au/\">https://hanglogic.com.au/</a></p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        },
+        "question_4qVDqB": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "Australian Capital Territory",
+            "content": "<h4>Canberra:</h4><h5>Canberra Picture Hanging</h5><p>Beau Major: 0410 258 709 <br/>Email:  beaumajor@gmail.com<br/><a href=\"https://canberrapicturehanging.com.au/\">https://canberrapicturehanging.com.au/</a> </p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        },
+        "question_7UC9p3": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "Western Australia",
+            "content": "<h4><strong>Perth</strong>:</h4><h5><strong>The Hangmaster</strong></h5><p>Maria: 0401 507 075<br/>Email:  <a href=\"mailto:info@thehangmaster.com.au\">info@thehangmaster.com.au</a> <br/><a href=\"https://www.thehangmaster.com.au/\">https://www.thehangmaster.com.au/</a>  </p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        },
+        "question_3mryYn": {
+          "type": "question",
+          "settings": {
+            "default_open": false,
+            "title": "Tasmania",
+            "content": "<h4><strong>Hobart</strong>:</h4><h5><strong>Hang Itt</strong></h5><p>Mathew Stuart: <a href=\"tel:0406323772\">0406 323 772</a><br/>Email: <a href=\"mailto:hello@hangitt.com.au\">hello@hangitt.com.au</a> <br/><a href=\"https://hangitt.com.au/\">https://hangitt.com.au/</a>  </p>",
+            "show_icon": false,
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_cLHWMY",
+        "question_kPW8Ww",
+        "question_AAYGB8",
+        "question_fgderc",
+        "question_TLD74K",
+        "question_4qVDqB",
+        "question_7UC9p3",
+        "question_3mryYn"
+      ],
+      "settings": {
+        "heading_font_size": "heading-medium",
+        "question_font_size": "heading-small",
+        "width": "wrapper",
+        "columns": "1",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "section_rich_text_DTEAkR": {
+      "type": "section-rich-text",
+      "blocks": {
+        "text_qhEiwn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Note: While Designer Boys trusts these providers and believes they uphold the same high standards we do, we cannot accept responsibility for the services they provide. We encourage you to speak with them directly to ensure the best outcome for your space.</p>",
+            "text_font_size": "body-large",
+            "read_more": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "text_qhEiwn"
+      ],
+      "settings": {
+        "align_text": "text-left",
+        "width": "wrapper",
+        "color_scheme": "",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_accordion_group_EJktmm",
+    "section_rich_text_DTEAkR"
+  ]
+}

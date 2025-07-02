@@ -1,0 +1,89 @@
+{% assign breadcrumbs_modifier = breadcrumbs_modifier | default: '' %}
+
+{% capture divider_html %}
+  <span class="breadcrumbs__arrow">&nbsp;</span>
+{% endcapture %}
+
+<nav class="breadcrumbs {{ breadcrumbs_modifier }}">
+  <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+
+  {{ divider_html }}
+
+  {% if template contains 'product' %}
+
+    <a href="/collections/artwork">Artwork</a>
+    {{ divider_html }}
+
+    {% comment %}
+    {%- if product.type != blank -%}
+      <a href="/collections/{{ product.type | handle }}">{{ product.type | title }}</a>
+      {{ divider_html }}
+    {%- endif -%}   
+    {% endcomment %}   
+
+    {%- if collection and collection.title != blank -%}
+      <a href="{{ collection.url }}">{{ collection.title }}</a>
+      {{ divider_html }}
+    {%- endif -%}
+
+    {% comment %}
+    {% assign collection_tag = '' %}
+    {% assign metaobject_handle = '' %}
+    {%- for tag in product.tags -%}
+      {%- if tag contains 'collection-' -%}
+        {% assign collection_tag = tag %}
+        {% assign metaobject_handle = collection_tag | remove: 'collection-' | handleize %}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    
+
+    {%- if collection_tag != '' and collections[metaobject_handle] != nil -%} 
+      <a href="/collections/{{ metaobject_handle }}">{{ collections[metaobject_handle].title }}</a>
+      {{ divider_html }}
+    {%- endif -%}
+    {% endcomment %}
+
+    {% comment %}
+    {%- if product.type != blank -%}
+      <a href="/collections/artwork">Artwork</a>
+      {{ divider_html }}
+    {%- endif -%}    
+    {% endcomment %}
+
+  {% elsif template contains 'collection' %} 
+  
+    <a href="/collections/artwork">Artwork</a>
+    {{ divider_html }} 
+
+  {% elsif request.path contains "/pages/artist/" %}
+    {{ resource.object_type }}
+      <a href="/pages/artists">Our Artists</a>
+      {{ divider_html }}
+  {%- elsif template.name == 'article' -%}
+    {{ blog.title | link_to: blog.url }}
+    {{ divider_html }}
+  {% endif %}
+
+{% assign artist_slug = request.path | split: '/' | last %}
+{% assign artist = shop.metaobjects['artists'] | where: "slug", artist_slug | first %}
+
+<span class="current-crumbs">
+  {% if template contains 'product' %}
+    {{ product.title }}
+  {% elsif template contains 'collection' %} 
+    {{ collection.title }}
+  {% elsif template contains 'article' %}
+    {{ article.title }}
+  {% elsif template contains 'blog' %}
+    {{ blog.title }}
+  {% elsif template contains 'page' %}
+    {{ page.title }}
+  {% elsif request.path == '/account/login' %}    
+    Login
+  {% else %}
+    {{ page_title }}
+  {% endif %}
+</span>
+
+</nav>

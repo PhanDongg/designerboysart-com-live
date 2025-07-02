@@ -1,0 +1,318 @@
+<!-- /snippets/product-siblings.liquid -->
+
+{%- liquid
+  assign metafields = metafields | default: false
+  assign show_siblings = false
+  assign sibs_collection = collections[block.settings.siblings_collection].products
+  assign sibling_color = block.settings.sibling_color | default: product.metafields.theme.sibling_color.value | default: product.metafields.theme.sibling_colour.value | default: product.metafields.theme.siblings_color.value | default: product.metafields.theme.siblings_colour.value | default: product.metafields.theme.siblings_colors.value | default: product.metafields.theme.siblings_colours.value
+  assign hide_labels_class = ''
+
+  if metafields
+    assign sibs_collection = product.metafields.theme.sibling_products.value | default: collections[product.metafields.theme.siblings.value].products
+  endif
+
+  if metafields and sibs_collection != blank
+    assign show_siblings = true
+  elsif metafields == false and sibs_collection.size > 0
+    assign show_siblings = true
+  endif
+
+  if settings.show_labels == false
+    assign hide_labels_class = ' variant__labels--hide'
+  endif
+-%}
+
+{%- if show_siblings -%}
+  <div class="product__block{% if settings.show_lines %} product__block--lines{% endif %} product__siblings{{ hide_labels_class }} block-padding"
+    {{ block_style }}
+    {% if animation_name %}
+      data-animation="{{ animation_name }}"
+      data-animation-duration="{{ animation_duration }}"
+      data-animation-delay="{{ animation_delay }}"
+    {% endif %}
+    {{ block.shopify_attributes }}>
+    {% comment %} Form ID must match value in product-form.liquid {% endcomment %}
+    <input type="hidden" form="{{ product_form_id }}" name="properties[{{ 'general.siblings.label' | t }}]" value="{{ sibling_color }}">
+
+    {%- if sibs_collection -%}
+      <fieldset>
+        <div class="radio__fieldset radio__fieldset--swatches">
+          <legend class="radio__legend">
+            <span class="radio__legend__label">
+              <span class="radio__legend__option-name">{{ 'general.siblings.label' | t }}</span>
+
+              {%- if sibling_color != blank -%}
+                <small class="radio__legend__value">{{ sibling_color }}</small>
+              {%- endif -%}
+            </span>
+          </legend>
+
+          <div class="radio__buttons">
+            {%- for sib_product in sibs_collection limit: 50 -%}
+              {%- liquid
+                assign modifier_class = ''
+                if sib_product.handle == product.handle
+                  assign modifier_class = ' sibling__link--current'
+                endif
+
+                if sib_product.available == false
+                  assign modifier_class = modifier_class | append: ' sibling__link--sold-out'
+                endif
+
+                assign sib_color = sib_product.metafields.theme.sibling_color.value | default: sib_product.metafields.theme.sibling_colour.value | default: sib_product.metafields.theme.siblings_color.value | default: sib_product.metafields.theme.siblings_colour.value | default: sib_product.metafields.theme.siblings_colors.value | default: sib_product.metafields.theme.siblings_colours.value
+                assign swatch_color = sib_color | handle
+
+                capture swatch_image
+                  if settings.sibling_style == 'image'
+
+                    case settings.swatch_size
+                      when 'regular'
+                        assign sibling_width = 2.2 | times: settings.base_font_size | round
+                      when 'large'
+                        assign sibling_width = 3 | times: settings.base_font_size | round
+                    endcase
+
+                    assign sibling_sizes = sibling_width | append: 'px'
+                    assign sibling_width_15x = sibling_width | times: 1.5
+                    assign sibling_width_2x = sibling_width | times: 2
+                    assign sibling_widths = sibling_width | append: ', ' | append: sibling_width_15x | append: ', ' | append: sibling_width_2x
+
+                    render 'image', image: sib_product.featured_media.preview_image, width: sibling_width_2x, height: sibling_width_2x, widths: sibling_widths, sizes: sibling_sizes, aspect_ratio: 1, show_backfill: false
+                  endif
+                endcapture
+              -%}
+
+              <radio-swatch
+                class="swatches swatch__button swatch__button--{{ settings.swatch_style }} swatch-{{ swatch_color | handle }}"
+                style="--swatch: var(--{{ swatch_color }});"
+                data-tooltip="{{ sib_color }}">
+                {%- if product_api -%}
+                  {%- assign unique = section.id | append: '-' | append: sib_product.id -%}
+
+                  <quick-add-product>
+                    <div data-quick-add-holder="{{ sib_product.id }}">
+                      <a href="{{ sib_product.url }}" class="sibling__link{{ modifier_class }}" data-quick-add-btn data-sibling-swapper data-quick-add-modal-handle="{{ sib_product.handle }}">
+                        {{ swatch_image }}
+                        <span class="visually-hidden">{{ swatch_color }}</span>
+                      </a>
+
+                      {%- render 'product-quick-add-modal-template', product_id: sib_product.id, unique: unique -%}
+                    </div>
+                  </quick-add-product>
+                {%- else -%}
+                  <a href="{{ sib_product.url }}" class="sibling__link{{ modifier_class }}">
+                    {{ swatch_image }}
+                    <span class="visually-hidden">{{ swatch_color }}</span>
+                  </a>
+                {%- endif -%}
+              </radio-swatch>
+            {%- endfor -%}
+          </div>
+        </div>
+      </fieldset>
+    {%- endif -%}
+  </div>
+{%- elsif request.design_mode -%}
+  <div {{ block.shopify_attributes }}></div>
+{%- endif -%}
+
+{% comment %}
+{% assign is_canvas = false %}
+{% assign framed_product_url = "" %}
+{% assign canvas_product_url = "" %}
+{% assign has_framed_product = false %}
+{% assign has_canvas_product = false %}
+
+{% if product.handle contains "-canvas" %}
+  {% assign is_canvas = true %}
+  {% assign framed_handle = product.handle | remove: "-canvas" %}
+  {% assign canvas_handle = product.handle %}
+{% else %}
+  {% assign framed_handle = product.handle %}
+  {% assign canvas_handle = product.handle | append: "-canvas" %}
+{% endif %}
+
+{%- paginate collections.all.products by 9999 -%}
+  {% for related_product in collections.all.products %}
+    {% if related_product.handle == framed_handle %}
+      {% assign has_framed_product = true %}
+      {% assign framed_product_url = related_product.url %}
+    {% elsif related_product.handle == canvas_handle %}
+      {% assign has_canvas_product = true %}
+      {% assign canvas_product_url = related_product.url %}
+    {% endif %}
+  {% endfor %}
+{%- endpaginate -%}  
+
+<div class="artwork-options">
+  <fieldset>
+    <legend>Artwork Type</legend>
+    <ul>
+      {% if has_framed_product %}
+        <li class="sibling-print {% if request.path == framed_product_url %}current-artwork{% endif %}">
+          <a href="{{ framed_product_url }}" title="Framed Paper Print">
+            <img src="{{ 'framed-paper-print.svg' | asset_url }}" />
+            <span>Framed Paper Print</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {% if has_canvas_product %}
+        <li class="sibling-canvas {% if request.path == canvas_product_url %}current-artwork{% endif %}">
+          <a href="{{ canvas_product_url }}" title="Canvas Print">
+            <img src="{{ 'canvas-print.svg' | asset_url }}" />
+            <span>Canvas Print</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </fieldset>
+</div>
+{% endcomment %}
+
+{% assign base_handle = product.handle | remove: '-canvas' %}
+{% assign canvas_handle = base_handle | append: '-canvas' %}
+
+{%- assign sibling_data = base_handle | append: ',' | append: canvas_handle | split: ',' -%}
+{%- if product.type contains 'Canvas' and product.type contains 'Platinum'-%}
+{%- elsif product.type contains 'Prints' or product.type contains 'Print' or product.type contains 'Canvas' -%}
+<div class="artwork-options">
+  <fieldset>
+    <legend>Artwork Type</legend>
+    <ul class="sibling-products">
+        {% assign base_product = all_products[base_handle] %}
+        {% assign canvas_product = all_products[canvas_handle] %}    
+
+        <!-- Framed Paper Print Link -->
+        {% if base_product and base_product.available and base_product.variants.size > 0 %}
+            <li class="sibling-print {% if product.handle == base_handle %}current-artwork{% endif %}">
+                <a href="{{ base_product.url }}" title="Framed Paper Print">
+                  <img src="{{ block.settings.framed_print | image_url }}" alt="{{ block.settings.framed_print_text }}" />
+                  <span>{{ block.settings.framed_print_text }}</span>
+                </a>
+            </li>
+        {% endif %}
+
+        <!-- Canvas Print Link -->
+        {% if canvas_product and canvas_product.available and canvas_product.variants.size > 0 %}
+            <li class="sibling-canvas {% if product.handle == canvas_handle %}current-artwork{% endif %}">
+                <a href="{{ canvas_product.url }}" title="Canvas Print">
+                  <img src="{{ block.settings.canvas_print | image_url }}" alt="{{ block.settings.canvas_print_text }}" />
+                  <span>{{ block.settings.canvas_print_text }}</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+  </fieldset>
+</div>
+
+{%- elsif product.type contains 'Platinum' or product.type contains 'Platinum Canvas' -%}
+
+{%- endif -%}
+
+{% comment %}
+{% assign has_canvas_or_prints = false %}
+{% for related_product in product.metafields.custom.related_products.value %}
+  {% if related_product.type contains "Canvas" or related_product.type contains "Prints" %}
+    {% assign has_canvas_or_prints = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if has_canvas_or_prints %}
+  <div class="artwork-options">
+    <fieldset>
+      <legend>Artwork Type</legend>
+      <ul class="sibling-products">
+          {% assign base_product = all_products[base_handle] %}
+          {% assign canvas_product = all_products[canvas_handle] %}    
+
+          <!-- Framed Paper Print Link -->
+          {% if base_product and base_product.url %}
+              <li class="sibling-print {% if product.handle == base_handle %}current-artwork{% endif %}">
+                  <a href="{{ base_product.url }}" title="Framed Paper Print">
+                    <img src="{{ block.settings.framed_print | image_url }}" alt="{{ block.settings.framed_print_text }}" />
+                    <span>{{ block.settings.framed_print_text }}</span>
+                  </a>
+              </li>
+          {% endif %}
+
+          <!-- Canvas Print Link -->
+          {% if canvas_product and canvas_product.url  %}
+              <li class="sibling-canvas {% if product.handle == canvas_handle %}current-artwork{% endif %}">
+                  <a href="{{ canvas_product.url }}" title="Canvas Print">
+                    <img src="{{ block.settings.canvas_print | image_url }}" alt="{{ block.settings.canvas_print_text }}" />
+                    <span>{{ block.settings.canvas_print_text }}</span>
+                  </a>
+              </li>
+          {% endif %}
+      </ul>
+    </fieldset>
+  </div>
+{% endif %}
+
+
+<p>Metafield Debug:</p>
+<ul>
+  <li>Metafield Exists: {% if product.metafields.custom.siblings %}Yes{% else %}No{% endif %}</li>
+
+  <li>Metafield Type: {{ product.metafields.custom.siblings.type }}</li>
+  <li>Metafield Raw Output: {{ product.metafields.custom.siblings }}</li>
+  <li>Metafield Value: {{ product.metafields.custom.siblings.value }}</li>
+</ul>
+
+
+{% assign siblings = product.metafields["custom"]["siblings"].value %}
+
+{{ siblings }}
+
+{% if product.metafields.custom.siblings %}
+<div class="artwork-options">
+  <fieldset>
+    <legend>Artwork Type</legend>
+    <ul class="sibling-products">
+
+      {% for related_product in product.metafields.custom.siblings.value %}
+        {% assign product_type = related_product.type %}
+
+        {% if product_type contains "Prints" %}
+          <li class="sibling-print {% if product.handle == related_product.handle %}current-artwork{% endif %}">
+            <a href="{{ related_product.url }}" title="{{  block.settings.framed_print_text }}">
+              <img src="{{ block.settings.framed_print | image_url }}" alt="{{ block.settings.framed_print_text }}" />
+              <span>{{ block.settings.framed_print_text }}</span>
+            </a>
+          </li>
+        {% endif %}
+
+        {% if product_type contains "Canvas" %}
+          <li class="sibling-canvas {% if product.handle == related_product.handle %}current-artwork{% endif %}">
+            <a href="{{ related_product.url }}" title="{{ block.settings.canvas_print_text }}">
+              <img src="{{ block.settings.canvas_print | image_url }}" alt="{{ block.settings.canvas_print_text }}" />
+              <span>{{ block.settings.canvas_print_text }}</span>
+            </a>
+          </li>
+        {% endif %}
+
+      {% endfor %}
+
+    </ul>
+  </fieldset>
+</div>
+{% endif %}
+{% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

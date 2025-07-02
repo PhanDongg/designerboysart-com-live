@@ -1,0 +1,267 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "show_title": true,
+        "heading_font_size": "heading-large",
+        "show_content": true,
+        "text_font_size": "body-medium",
+        "align_text": "text-left",
+        "overlay_opacity": 0,
+        "height": "screen-height-three-quarters",
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "double-1": {
+      "type": "section-double",
+      "blocks": {
+        "heading-1-1": {
+          "type": "heading",
+          "settings": {
+            "title": "Inspired By A Profound Sense Of Style",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "h2"
+          }
+        },
+        "text-1-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Inspired by a profound sense of style Gavin Atkins and Warren Sonin are the well-known creative duo behind Designer Boys Art. They became household names after they appeared on the 1st series of the top-rating TV show ‘The Block’. After almost a decade as high profile interior decorators, Gavin and Warren followed their creative talents to give rise to a highly sought after interior art business, built on originality of design, exceptional service & a unique international style.</p><p>Today, Gavin and Warren curate one of the most expansive global collections of designer artworks brimming with their artistic flair & impeccable finesse. Their beautiful artworks now appear in a string of interior projects across the globe, from classically elegant to simple modern interiors.</p>",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        },
+        "image_3dcwb3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gavin_Warren_Signature-Blk.svg",
+            "image_width": 50,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading-1-1",
+        "text-1-1",
+        "image_3dcwb3"
+      ],
+      "settings": {
+        "image_1": "shopify://shop_images/About_HeroBanner.jpg",
+        "image_width": "one-half",
+        "text_alignment": "text-center",
+        "layout": "",
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "image-height--mobile",
+        "reverse_blocks": false,
+        "center_text": false,
+        "custom_class": "about-us-section",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
+    "columns": {
+      "type": "section-columns",
+      "blocks": {
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Passion_for_Unique_Design.jpg",
+            "image_badge": "",
+            "title": "Passion for Unique Design",
+            "heading_font_size": "heading-small",
+            "text": "<p>Curating each piece with an eye for originality, Designer Boys Art brings unmatched style and individuality to every artwork, redefining elegance in interior design.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary hero__btn",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "image_aspect_ratio": 1.2,
+            "mobile_image_aspect_ratio": 1.2,
+            "heading_tag": "automatic"
+          }
+        },
+        "image_TAE9A7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Global_Inspiration_Local_Roots_ecafbd4a-06be-442e-b133-5eed86f56e42.jpg",
+            "image_badge": "",
+            "title": "Global Inspiration, Local Roots",
+            "heading_font_size": "heading-small",
+            "text": "<p>Proudly Australian, Designer Boys Art proudly offers one of the world’s most diverse collections, enriching interiors worldwide with both international style and local heart.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary hero__btn",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "image_aspect_ratio": 1.2,
+            "mobile_image_aspect_ratio": 1.2,
+            "heading_tag": "automatic"
+          }
+        },
+        "image_bycb3Y": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Excellence_in_Service.jpg",
+            "image_badge": "",
+            "title": "Excellence in Service",
+            "heading_font_size": "heading-small",
+            "text": "<p>With nearly two decades of experience, our team ensures an exceptional client experience, supporting every project with unparalleled care and attention to detail.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary hero__btn",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "image_aspect_ratio": 1.2,
+            "mobile_image_aspect_ratio": 1.2,
+            "heading_tag": "automatic"
+          }
+        },
+        "image-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/From_Original_Art.jpg",
+            "image_badge": "",
+            "title": "From Original Art",
+            "heading_font_size": "heading-small",
+            "text": "<p>We partner with over 60 talented artists, ensuring our collections are constantly evolving with fresh, artist-driven designs, celebrating innovation, creativity, and timeless artistic expression.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary hero__btn",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "image_aspect_ratio": 1.2,
+            "mobile_image_aspect_ratio": 1.2,
+            "heading_tag": "automatic"
+          }
+        },
+        "image-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3227_Edit_3ee555a4-d327-481c-9138-12a9934ff286.jpg",
+            "image_badge": "",
+            "title": "Handcrafted & Made-to-Order",
+            "heading_font_size": "heading-small",
+            "text": "<p>Each artwork is made to order, featuring hand-applied textures and brushstroke details for a gallery-quality finish, ensuring uniqueness and meticulous craftsmanship in every piece.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary hero__btn",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "image_aspect_ratio": 1.2,
+            "mobile_image_aspect_ratio": 1.2,
+            "heading_tag": "automatic"
+          }
+        },
+        "image_jF37FP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Fast_Reliable_Delivery_b8882577-bd90-420f-b9cd-bc0e3d61b07e.jpg",
+            "image_badge": "",
+            "title": "Fast, Reliable Delivery",
+            "heading_font_size": "heading-small",
+            "text": "<p>We offer efficient production and delivery, including premium shipping options with scheduled drop-offs, ensuring artwork arrives safely and on time in perfect condition.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary hero__btn",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "image_aspect_ratio": 1.2,
+            "mobile_image_aspect_ratio": 1.2,
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image-1",
+        "image_TAE9A7",
+        "image_bycb3Y",
+        "image-2",
+        "image-3",
+        "image_jF37FP"
+      ],
+      "settings": {
+        "title": "Our Commitments",
+        "heading_font_size": "heading-medium",
+        "align_heading": "text-center",
+        "align_text": "text-center",
+        "width": "wrapper",
+        "align_columns": "flex-align-top",
+        "show_text_hover": false,
+        "layout": "grid",
+        "grid": 3,
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 80,
+        "padding_bottom": 40,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_rich_text_aHpkXT": {
+      "type": "section-rich-text",
+      "blocks": {
+        "heading_MX8aM7": {
+          "type": "heading",
+          "settings": {
+            "title": "Australia's leader in decorative wall art, canvases and textured artworks for inspired interiors...",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_MX8aM7"
+      ],
+      "settings": {
+        "align_text": "text-center",
+        "width": "wrapper",
+        "color_scheme": "",
+        "overlay_opacity": 0,
+        "show_overlay_text": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "double-1",
+    "columns",
+    "section_rich_text_aHpkXT"
+  ]
+}

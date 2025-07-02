@@ -1,0 +1,129 @@
+{%- liquid 
+  assign fetchpriority = 'auto'
+  assign preload = true
+  assign image = metaobject.frame_image_corner | image_url
+  
+if metaobject.frame_hover
+  assign image_hover = metaobject.frame_hover | image_url
+elsif metaobject.frame_image_print_landscape
+  assign image_hover = metaobject.frame_image_print_landscape | image_url  
+elsif metaobject.frame_image_canvas_landscape
+  assign image_hover = metaobject.frame_image_canvas_landscape | image_url    
+else
+  assign image_hover = metaobject.frame_image | image_url
+endif 
+
+  assign image_width = image.width | at_most: 5760 | default: 5760 
+  assign width = image_width | default: 5760 
+  assign loading = 'eager'
+  assign sizes = '(min-width: 1400px) calc((80vw - 64px) / ' | append: columns_desktop | append: ' - 32px), (min-width: 750px) calc(100vw / ' | append: columns_medium | append: ' - 22px), (min-width: 480px) calc(100vw / ' | append: columns_small | append: ' - 16px), calc(100vw / ' | append: columns_mobile | append: ')'
+  assign widths = '136, 160, 180, 220, 254, 284, 292, 320, 480, 528, 640, 720, 960, 1080, 1296, 1512, 1728, 1950'
+  
+  capture srcset
+    render 'image-srcset', image: image, widths: widths
+  endcapture  
+
+  capture srcset_hover
+    render 'image-srcset', image: image_hover, widths: widths
+  endcapture  
+
+  assign alt = alt | default: image.alt | default: metaobject.frame_name
+  assign alt = alt | escape
+
+-%}
+<div data-frame-{{ frame_group }}-order="{{ metaobject.sort_order }}" class="metaobject-item frame-grid grid-item cc-grid-item product-item  product-item--left product-item--outer-text {% if metaobject.frame_hover %} with_frame_hover {% endif %}">
+  <div class="product-item__image double__image" data-product-image>
+    
+      <div class="product-item__bg" data-product-image-default>
+        <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill aos-animate" {{ wrapper_attributes }}>
+          {%- if image -%}
+            {{ image | image_url: width: image_width, height: height | image_tag:
+              loading: loading,
+              srcset: srcset,
+              sizes: sizes,
+              alt: alt,
+              fetchpriority: fetchpriority,
+              preload: preload,
+              class: img_class
+            }}
+          {%- elsif placeholder != blank -%}
+            {{ placeholder | placeholder_svg_tag: 'svg-placeholder' }}
+          {%- else -%}
+            <img src="{{ 'blank.svg' | asset_url }}" loading="lazy" class="{{ img_class }}">
+          {%- endif -%}
+        </figure>
+        <div class="product-item__bg__inner">
+          {%- if image_hover -%}
+            <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill">
+              {{ image_hover | image_url: width: image_width, height: height | image_tag:
+                loading: loading,
+                srcset: srcset_hover,
+                sizes: sizes,
+                alt: alt,
+                fetchpriority: fetchpriority,
+                preload: preload,
+                class: img_class
+              }}
+            </figure>
+          {%- else -%}
+            <img src="{{ 'blank.svg' | asset_url }}" loading="lazy" class="{{ img_class }}">
+          {%- endif -%}            
+        </div>
+      </div>
+      <hover-images class="product-item__bg__under">
+        <div class="product-item__bg__slider" data-hover-slider>
+          <div class="product-item__bg__slide" data-hover-slide-touch>
+            {%- if image -%}
+              <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill">
+                {{ image | image_url: width: image_width, height: height | image_tag:
+                  loading: loading,
+                  srcset: srcset,
+                  sizes: sizes,
+                  alt: alt,
+                  fetchpriority: fetchpriority,
+                  preload: preload,
+                  class: img_class
+                }}
+              </figure>
+            {%- else -%}
+              <img src="{{ 'blank.svg' | asset_url }}" loading="lazy" class="{{ img_class }}">
+            {%- endif -%} 
+          </div>      
+          <div class="product-item__bg__slide" data-hover-slide data-hover-slide-touch>
+            {%- if image_hover -%}
+              <figure class="image-wrapper image-wrapper--cover lazy-image lazy-image--backfill">
+                {{ image_hover | image_url: width: image_width, height: height | image_tag:
+                  loading: loading,
+                  srcset: srcset_hover,
+                  sizes: sizes,
+                  alt: alt,
+                  fetchpriority: fetchpriority,
+                  preload: preload,
+                  class: img_class
+                }}
+              </figure>
+            {%- else -%}
+              <img src="{{ 'blank.svg' | asset_url }}" loading="lazy" class="{{ img_class }}">
+            {%- endif -%} 
+          </div>
+        </div>
+      </hover-images>
+  </div>
+  {% assign frame_details = metaobject.frame_detaiils.value %}
+  {% if frame_details %}
+    <div class="product-information-overlay">
+      <div class="overlay-text">
+        {% for child in frame_details.children %}
+          {% for item in child.children %}
+            {{ item.value | newline_to_br }}
+          {% endfor %}
+        {% endfor %}    
+      </div>
+    </div>
+  {% endif %}
+  <div class="product-information">
+    <div class="product-item__info body-medium">
+      <h3 class="heading-large featured-grid-collection-title">{{ metaobject.frame_name }}</h3>
+    </div>
+  </div>
+</div>

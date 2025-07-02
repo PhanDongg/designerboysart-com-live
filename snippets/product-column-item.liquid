@@ -1,0 +1,94 @@
+<!-- /snippets/product-column-item.liquid -->
+{% comment %}
+    Renders a product item in sidebar column
+
+    Accepts:
+    - product: {Object} product (required)
+
+    Usage:
+    {% render 'product-column-item', product: product %}
+{% endcomment %}
+{%- liquid
+
+  if settings.currency_code_enable
+    assign product_price_min = product.price_min | money_with_currency
+    assign product_compare_at_price = product.compare_at_price | money_with_currency
+  else
+    assign product_price_min = product.price_min | money
+    assign product_compare_at_price = product.compare_at_price | money
+  endif
+
+  assign preview_image = product.featured_media.preview_image
+  if product.media.size > 2
+     assign preview_image = product.media[2].preview_image
+  endif  
+
+  assign alt = product.title
+-%}
+
+<a href="{{ product.url }}" class="widget__column">
+  {%- if product.media -%}
+    <div class="widget__column__image">
+      {%- render 'image', image: preview_image, alt: alt, width: 210, widths: '105, 210, 360, 450', sizes: '105px', cover: true -%}
+    </div>
+  {%- endif -%}
+
+  <div class="widget__column__contents">
+    <p class="widget__column__title"><strong>{{ product.title | strip_html }}</strong></p>
+    <p class="meta--light">
+      {% if customer and customer.tags contains 'status-approved' or customer.tags contains 'VIP' %}
+        <span class="price{% if product.compare_at_price > product.price %} sale{% endif %}">
+        {% if product.available %}
+          <span class="new-price">
+            {% if product.price_varies %}
+              <small>{{ 'products.general.from' | t }}</small>
+            {% endif %}
+            {%- if product.price_min == 0 -%}
+              {{ 'general.money.free' | t }}
+            {%- else -%}
+              {{ product_price_min }}
+            {%- endif -%}
+          </span>
+          {% if product.compare_at_price > product.price %}
+            <span class="old-price">{{ product_compare_at_price }}</span>
+          {% endif %}
+        {% else %}
+          <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+        {% endif %}
+        </span>
+      {% else %}
+        {% comment %}
+          {% assign rrp_price = product.metafields.custom.rrp_price | times: 100 %}
+          {% if rrp_price %}
+            <span class="price">
+              <span class="new-price">
+                <small>From:</small>
+                {{ rrp_price | money  }}
+              </span> 
+            </span>
+          {% endif %}
+        {% endcomment %}
+        {% assign first_variant = product.variants.first %}
+        {% assign variant_rrp = first_variant.metafields.custom.rrp_price %}
+        {% assign product_rrp = product.metafields.custom.rrp_price %}
+
+        {% if variant_rrp %}
+          {% assign rrp_price = variant_rrp | times: 100 %}
+        {% elsif product_rrp %}
+          {% assign rrp_price = product_rrp | times: 100 %}
+        {% endif %}
+
+        {% if rrp_price %}
+          <span class="price">
+            <span class="new-price">
+              <small>From:</small>
+              {{ rrp_price | money  }}
+            </span> 
+          </span>
+        {% endif %}     
+           
+      {% endif %}
+
+    </p>
+  </div>
+</a>

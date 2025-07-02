@@ -1,0 +1,253 @@
+<!-- /templates/customers/register.liquid -->
+
+<section id="Register" class="center account">
+    {% if settings.account_banner %}
+      <div class="index-hero wide-image section-padding color-scheme-9" id="Hero--template--17598188454060__section_hero_ywEnAg" data-section-id="template--17598188454060__section_hero_ywEnAg" data-section-type="hero" data-overlay-header="">
+        <div class="hero__wrapper frame wrapper--full">
+          <div class="hero__images frame__item">
+            <div class="hero__split-image">
+              <div class="image__hero__frame image-height screen-height-one-third--mobile" style="--aspect-ratio: 8.307692307692308;--aspect-ratio-mobile: 8.307692307692308;">
+                <div class="image__hero__pane">
+                  <div class="image__hero__scale image__fill lazy-image lazy-image--backfill">
+                    {% assign account_banner = settings.account_banner%}
+                    {%- render 'image-hero' image_desktop: account_banner, image_mobile: mobile_image, sizes: sizes, desktop_height: desktop_height, mobile_height: mobile_height -%}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="image-overlay" style="--overlay-opacity: 0.2;"></div>
+          </div>
+          <div class="hero__content__wrapper frame__item align--middle-center-desktop align--middle-center-mobile">
+            <div class="hero__content hero__content--transparent" style="--overlay-opacity: 0.2;">
+              <h1 class="hero__title heading-large aos-animate" data-aos="hero" data-aos-anchor="#Hero--template--17598188454060__section_hero_ywEnAg" data-aos-order="2">
+                {{ settings.account_banner_title }}
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+
+  <div class="wrapper wrapper--normal">
+    <div class="customer-register">
+      <h2 class="page__heading headline-sm align-left">{{ 'customer.register.title' | t }}</h2>
+
+      <p class="align-left">{{ 'customer.register.sign_in_prompt' | t }} <span class="text-link"><a href="{{ routes.account_login_url }}">{{ 'customer.register.sign_in_cta' | t }}</a></span>.</p>
+
+      {% form 'create_customer' %}
+      	<div class="form-field">{{ form.errors | default_errors }}</div>
+
+        <div class="form-field">
+          <label for="first_name">{{ 'customer.register.first_name' | t }}</label>
+          <input type="text" value="{{ form.first_name }}" name="customer[first_name]" id="first_name" class="large" size="30" placeholder="{{ 'customer.register.first_name' | t }}">
+        </div>
+
+        <div class="form-field">
+          <label for="last_name">{{ 'customer.register.last_name' | t }}</label>
+          <input type="text" value="{{ form.last_name }}" name="customer[last_name]" id="last_name" class="large{% if form.errors contains 'last_name' %} error{% endif %}" placeholder="{{ 'customer.register.last_name' | t }}">
+        </div>
+
+        <div class="form-field">
+          <label for="email">{{ 'customer.register.email' | t }}</label>
+          <input type="email" value="{{ form.email }}" name="customer[email]" id="email" class="large{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.register.email' | t }}">
+        </div>
+
+        <div class="form-field">
+          <label for="password">{{ 'customer.register.password' | t }}</label>
+          <input type="password" value="" name="customer[password]" id="password" class="large password{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.register.password' | t }}">
+        </div>
+
+        <div class="form-field action-bottom">
+          <button type="submit" class="btn btn--primary btn--solid">
+            <span>{{ 'customer.register.submit' | t }}</span>
+          </button>
+        </div>
+
+        <div class="form__legal">
+          {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% comment %} 
+<section class="shopify-section index-section text-columns-icons account-info-grid">
+<div class="section-columns section-padding color-scheme-2" data-section-type="column">
+  <div class="wrapper">
+    <div class="grid grid--mobile-vertical flex-align-top text-center ">
+      {%- capture icon_style -%}
+             --icon-size: {{ settings.icon_size }}px;
+             {%- if title != blank -%}
+             --icon-line-height: calc(1.2 * var(--font-{{ settings.heading_font_size }}));
+             {%- elsif text != blank-%}
+             --icon-line-height: calc(1.5 * var(--font-{{ settings.text_font_size }}));
+              {%- endif -%}
+      {%- endcapture -%}
+      <div class="grid-item grid-item1">
+          <div class="column__inner aos-animate">
+              <div class="column__icon" style="{{ icon_style }}">
+                  <div class="icon__animated{% if settings.image != blank %} icon__animated--image{% endif %}">
+                      {%- liquid
+                          if settings.image
+                            assign animation_order = animation_order | plus: 1
+                            assign icon_color = settings.icon_color
+                            assign icon_size = settings.icon_size                          
+                            assign image = settings.image
+                            assign icon_width = icon_size
+                            assign icon_width_retina = icon_width | times: 2
+                            assign icon_sizes = icon_width | append: 'px'
+                            assign icon_widths = icon_width | append: ', ' | append: icon_width_retina
+
+                            render 'image' image: image, width: icon_width_retina, sizes: icon_sizes, widths: icon_widths, loading: loading
+                          else
+                            render 'animated-icon', filename: block.settings.icon_name
+                          endif
+                      -%}
+                    </div>
+              </div>  
+              <div class="column__content">
+                <div class="column__heading heading-small">
+                  {{ settings.title }}
+                </div> 
+                <div class="column__text rte body-medium">
+                     {{ settings.text }}
+                </div>  
+              </div>
+          </div>  
+      </div>
+
+
+      {%- capture icon_style_2 -%}
+             --icon-size: {{ settings.icon_size_2 }}px;
+             {%- if title != blank -%}
+             --icon-line-height: calc(1.2 * var(--font-{{ settings.heading_font_size_2 }}));
+             {%- elsif text != blank-%}
+             --icon-line-height: calc(1.5 * var(--font-{{ settings.text_font_size_2 }}));
+              {%- endif -%}
+      {%- endcapture -%}      
+
+      <div class="grid-item grid-item2">
+          <div class="column__inner aos-animate">
+              <div class="column__icon" style="{{ icon_style_2 }}">
+                  <div class="icon__animated{% if settings.image_2 != blank %} icon__animated--image{% endif %}">
+                      {%- liquid
+                          if settings.image_2
+                            assign animation_order = animation_order | plus: 1
+                            assign icon_color = settings.icon_color_2
+                            assign icon_size = settings.icon_size_2                          
+                            assign image = settings.image_2
+                            assign icon_width = icon_size
+                            assign icon_width_retina = icon_width | times: 2
+                            assign icon_sizes = icon_width | append: 'px'
+                            assign icon_widths = icon_width | append: ', ' | append: icon_width_retina
+
+                            render 'image' image: image, width: icon_width_retina, sizes: icon_sizes, widths: icon_widths, loading: loading
+                          else
+                            render 'animated-icon', filename: block.settings.icon_name
+                          endif
+                      -%}
+                    </div>
+              </div>  
+              <div class="column__content">
+                <div class="column__heading heading-small">
+                  {{ settings.title_2 }}
+                </div> 
+                <div class="column__text rte body-medium">
+                     {{ settings.text_2 }}
+                </div>  
+              </div>
+          </div>  
+      </div>
+
+
+      {%- capture icon_style_3 -%}
+             --icon-size: {{ settings.icon_size_3 }}px;
+             {%- if title != blank -%}
+             --icon-line-height: calc(1.2 * var(--font-{{ settings.heading_font_size_3 }}));
+             {%- elsif text != blank-%}
+             --icon-line-height: calc(1.5 * var(--font-{{ settings.text_font_size_3 }}));
+              {%- endif -%}
+      {%- endcapture -%}        
+
+       <div class="grid-item grid-item2">
+          <div class="column__inner aos-animate">
+              <div class="column__icon" style="{{ icon_style_3 }}">
+                  <div class="icon__animated{% if settings.image_3 != blank %} icon__animated--image{% endif %}">
+                      {%- liquid
+                          if settings.image_3
+                            assign animation_order = animation_order | plus: 1
+                            assign icon_color = settings.icon_color_3
+                            assign icon_size = settings.icon_size_3                          
+                            assign image = settings.image_3
+                            assign icon_width = icon_size
+                            assign icon_width_retina = icon_width | times: 2
+                            assign icon_sizes = icon_width | append: 'px'
+                            assign icon_widths = icon_width | append: ', ' | append: icon_width_retina
+
+                            render 'image' image: image, width: icon_width_retina, sizes: icon_sizes, widths: icon_widths, loading: loading
+                          else
+                            render 'animated-icon', filename: block.settings.icon_name
+                          endif
+                      -%}
+                    </div>
+              </div>  
+              <div class="column__content">
+                <div class="column__heading heading-small">
+                  {{ settings.title_3 }}
+                </div> 
+                <div class="column__text rte body-medium">
+                     {{ settings.text_3 }}
+                </div>  
+              </div>
+          </div>  
+      </div>
+
+      {%- capture icon_style_4 -%}
+             --icon-size: {{ settings.icon_size_4 }}px;
+             {%- if title != blank -%}
+             --icon-line-height: calc(1.2 * var(--font-{{ settings.heading_font_size_4 }}));
+             {%- elsif text != blank-%}
+             --icon-line-height: calc(1.5 * var(--font-{{ settings.text_font_size_4 }}));
+              {%- endif -%}
+      {%- endcapture -%}        
+
+       <div class="grid-item grid-item2">
+          <div class="column__inner aos-animate">
+              <div class="column__icon" style="{{ icon_style_4 }}">
+                  <div class="icon__animated{% if settings.image_4 != blank %} icon__animated--image{% endif %}">
+                      {%- liquid
+                          if settings.image_4
+                            assign animation_order = animation_order | plus: 1
+                            assign icon_color = settings.icon_color_4
+                            assign icon_size = settings.icon_size_4                          
+                            assign image = settings.image_4
+                            assign icon_width = icon_size
+                            assign icon_width_retina = icon_width | times: 2
+                            assign icon_sizes = icon_width | append: 'px'
+                            assign icon_widths = icon_width | append: ', ' | append: icon_width_retina
+
+                            render 'image' image: image, width: icon_width_retina, sizes: icon_sizes, widths: icon_widths, loading: loading
+                          else
+                            render 'animated-icon', filename: block.settings.icon_name
+                          endif
+                      -%}
+                    </div>
+              </div>  
+              <div class="column__content">
+                <div class="column__heading heading-small">
+                  {{ settings.title_4 }}
+                </div> 
+                <div class="column__text rte body-medium">
+                     {{ settings.text_4 }}
+                </div>  
+              </div>
+          </div>  
+      </div>
+      
+    </div>                       
+  </div>
+</div>   
+</section>
+{% endcomment %}
